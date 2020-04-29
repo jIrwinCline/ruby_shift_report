@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
     def index
-        @reports = Report.all
-        render json: @reports
+        @entries = Entry.all
+        render json: @entries
     end
 end
