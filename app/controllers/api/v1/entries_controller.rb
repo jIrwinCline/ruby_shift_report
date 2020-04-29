@@ -1,6 +1,7 @@
 module Api
   module V1
     class EntriesController < ApplicationController
+    before_action :authorize_access_request!
     before_action :set_entry, only: [:show, :update, :destroy]
 
     # GET /entries
