@@ -1,5 +1,5 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
-export const REMOVE_CURRENT_USER = "REMOVE_CURRENT_USER";
+export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
 
 const signin = (userDetails, state) => {
   //do something
@@ -10,8 +10,12 @@ const signin = (userDetails, state) => {
   console.log({ ...state, currentUser: userState });
   return { ...state, currentUser: userState };
 };
-const logout = () => {
+const logout = (state) => {
   console.log("signed out");
+  return {
+    ...state,
+    currentUser: { email: null, fname: null, lname: null, dpsst: null },
+  };
   //make api delete call, if status 200, update state with blank current user details
 };
 
@@ -19,8 +23,8 @@ export const userReducer = (state, action) => {
   switch (action.type) {
     case SET_CURRENT_USER:
       return signin(action.payload, state);
-    case REMOVE_CURRENT_USER:
-      return;
+    case CLEAR_CURRENT_USER:
+      return logout(state);
     default:
       return state;
   }

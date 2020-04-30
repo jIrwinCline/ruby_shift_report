@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 
 import UserContext from "./user-context";
-import { userReducer, SET_CURRENT_USER, REMOVE_CURRENT_USER } from "./reducers";
+import { userReducer, SET_CURRENT_USER, CLEAR_CURRENT_USER } from "./reducers";
 export default function GlobalState(props) {
   //   const [currentUser, setCurrentUser] = useState({
   //     email: null,
@@ -30,19 +30,24 @@ export default function GlobalState(props) {
     console.log(userState);
   };
   const logout = () => {
-    console.log("signed out");
+    dispatch({
+      type: CLEAR_CURRENT_USER,
+    });
   };
 
   return (
-    <UserContext.Provider
-      value={{
-        currentUser: userState.currentUser,
-        reports,
-        signin: signin,
-        logout: logout,
-      }}
-    >
-      {props.children}
-    </UserContext.Provider>
+    <>
+      {console.log("User State", userState)}
+      <UserContext.Provider
+        value={{
+          currentUser: userState.currentUser,
+          reports,
+          signin: signin,
+          logout: logout,
+        }}
+      >
+        {props.children}
+      </UserContext.Provider>
+    </>
   );
 }

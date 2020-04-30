@@ -1,7 +1,7 @@
 import React from "react";
 
 export default React.createContext({
-  currentUsers: {
+  currentUser: {
     test: "test",
     email: null,
   },

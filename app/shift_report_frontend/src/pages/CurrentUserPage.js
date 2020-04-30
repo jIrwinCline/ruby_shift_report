@@ -17,7 +17,7 @@ export default function CurrentUserPage(props) {
       >
         Sign in
       </button>
-      {/* <button onClick={() => context.logout}>Logout</button> */}
+      <button onClick={() => context.logout()}>Logout</button>
       {context.currentUser.email}
       <div>
         <p>Hello </p>
