@@ -30,24 +30,22 @@ export default function GlobalState(props) {
     console.log(userState);
   };
   const logout = () => {
+    //make api delete call, if status 200, update state with blank current user details
     dispatch({
       type: CLEAR_CURRENT_USER,
     });
   };
 
   return (
-    <>
-      {console.log("User State", userState)}
-      <UserContext.Provider
-        value={{
-          currentUser: userState.currentUser,
-          reports,
-          signin: signin,
-          logout: logout,
-        }}
-      >
-        {props.children}
-      </UserContext.Provider>
-    </>
+    <UserContext.Provider
+      value={{
+        currentUser: userState.currentUser,
+        reports,
+        signin: signin,
+        logout: logout,
+      }}
+    >
+      {props.children}
+    </UserContext.Provider>
   );
 }
