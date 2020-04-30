@@ -12,30 +12,11 @@ import ReportsPage from "./pages/ReportsPage";
 import CreateReportPage from "./pages/CreateReportPage";
 import CurrentUserPage from "./pages/CurrentUserPage";
 
-import UserContext from "./context/user-context";
+import GlobalState from "./context/GlobalState";
 
-const initialState = {
-  user: null,
-  reports: [],
-  test: "Teststate",
-};
-
-const signin = () => {
-  console.log("signed in");
-};
-const logout = () => {
-  console.log("signed out");
-};
 function App() {
   return (
-    <UserContext.Provider
-      value={{
-        ...initialState,
-        signin: () => signin(),
-        logout: () => logout(),
-      }}
-    >
-      return (
+    <GlobalState>
       <Router>
         <Switch>
           <Route exact path="/" component={CurrentUserPage} />
@@ -45,8 +26,7 @@ function App() {
           <Route exact path="/report/entries" component={CreateReportPage} />
         </Switch>
       </Router>
-      );
-    </UserContext.Provider>
+    </GlobalState>
   );
 }
 
