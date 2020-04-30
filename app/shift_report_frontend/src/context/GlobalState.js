@@ -10,7 +10,9 @@ export default function GlobalState(props) {
   //     dpsst: null,
   //     test: "test",
   //   });
-  const [userState, dispatch] = useReducer(userReducer, { user: null });
+  const [userState, dispatch] = useReducer(userReducer, {
+    currentUser: { email: null, test: "test" },
+  });
   const [reports, setReports] = useState({
     reports: [],
   });
@@ -25,7 +27,7 @@ export default function GlobalState(props) {
       type: SET_CURRENT_USER,
       payload: credentials /**will be user details */,
     });
-    console.log("signed in");
+    console.log(userState);
   };
   const logout = () => {
     console.log("signed out");
@@ -34,7 +36,7 @@ export default function GlobalState(props) {
   return (
     <UserContext.Provider
       value={{
-        currentUser: userState,
+        currentUser: userState.currentUser,
         reports,
         signin: signin,
         logout: logout,

@@ -17,11 +17,12 @@ export default function CurrentUserPage(props) {
       >
         Sign in
       </button>
-      <button onClick={() => context.logout}>Logout</button>
+      {/* <button onClick={() => context.logout}>Logout</button> */}
+      {context.currentUser.email}
       <div>
-        Hello {context.currentUser.email}
-        {context.currentUser.test}
+        <p>Hello </p>
       </div>
+      <p>{context.currentUser.test}</p>
     </React.Fragment>
   );
 }

@@ -3,11 +3,12 @@ export const REMOVE_CURRENT_USER = "REMOVE_CURRENT_USER";
 
 const signin = (userDetails, state) => {
   //do something
-  console.log("signing in");
   const { email, fname, lname, dpsst } = userDetails;
-  let userState = state.user;
+  let userState = state.currentUser;
+  userState = { email, fname, lname, dpsst };
   //make api post call, if status 200, update state with current user details
-  return { ...state, user: userState };
+  console.log({ ...state, currentUser: userState });
+  return { ...state, currentUser: userState };
 };
 const logout = () => {
   console.log("signed out");
