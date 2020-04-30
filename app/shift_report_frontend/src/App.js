@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -14,7 +14,7 @@ import CurrentUserPage from "./pages/CurrentUserPage";
 
 import GlobalState from "./context/GlobalState";
 
-function App() {
+function App(props) {
   return (
     <GlobalState>
       <Router>
