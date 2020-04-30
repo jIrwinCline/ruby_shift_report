@@ -1,4 +1,4 @@
-class SignupController < ApplicationController
+class SigninController < ApplicationController
     before_action :authorize_access_request!, only: [:destroy]
 
     def create
@@ -9,9 +9,9 @@ class SignupController < ApplicationController
             session = JWTSession::Session.new(payload: payload, refresh_by_access_allowed: true)
             tokens = session.login
             response.set_cookie(JWTSessions.access_cookie,
-                                value: tokens[:access]
+                                value: tokens[:access],
                                 httponly: true,
-                                secure: Rails.env.production?)
+                                secure: Rails.env.production? )
             render json: { crsf: tokens[:csrf] }
         else
             not_authorized
