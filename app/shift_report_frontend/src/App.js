@@ -31,8 +31,8 @@ function App() {
     <UserContext.Provider
       value={{
         ...initialState,
-        signin: signin(),
-        logout: logout(),
+        signin: () => signin(),
+        logout: () => logout(),
       }}
     >
       return (
