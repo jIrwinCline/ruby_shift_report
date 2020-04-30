@@ -12,7 +12,7 @@ export default function CurrentUserPage(props) {
     <React.Fragment>
       <button onClick={context.signin}>Sign in</button>
       <button onClick={context.logout}>Logout</button>
-      <div>Hello {context.test}</div>
+      <div>Hello {context.currentUser.test}</div>
     </React.Fragment>
   );
 }

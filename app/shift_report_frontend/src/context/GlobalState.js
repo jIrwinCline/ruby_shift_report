@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 import UserContext from "./user-context";
 
 export default function GlobalState(props) {
-  const initialState = {
-    user: null,
+  const [currentUser, setCurrentUser] = useState({
+    email: null,
+    fname: null,
+    lname: null,
+    dpsst: null,
+    test: "test",
+  });
+  const [reports, setReports] = useState({
     reports: [],
-    test: "Teststate",
-  };
+  });
 
   const signin = () => {
     console.log("signed in");
@@ -18,7 +23,8 @@ export default function GlobalState(props) {
   return (
     <UserContext.Provider
       value={{
-        ...initialState,
+        currentUser,
+        reports,
         signin: () => signin(),
         logout: () => logout(),
       }}
