@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 
 import UserContext from "./user-context";
 import { userReducer, SET_CURRENT_USER, REMOVE_CURRENT_USER } from "./reducers";
@@ -10,14 +10,21 @@ export default function GlobalState(props) {
   //     dpsst: null,
   //     test: "test",
   //   });
-  const [userState, dispatch] = useReducer(userReducer);
+  const [userState, dispatch] = useReducer(userReducer, { user: null });
   const [reports, setReports] = useState({
     reports: [],
   });
 
-  const signin = () => {
+  const signin = (credentials) => {
+    const { password, email } = credentials;
+    //make api post call, if status 200, dispatch reducer with the user Details
+    //if error status, dispatch errors
+
     //will call dispatch here
-    // dispatch({})
+    dispatch({
+      type: SET_CURRENT_USER,
+      payload: credentials /**will be user details */,
+    });
     console.log("signed in");
   };
   const logout = () => {
@@ -27,10 +34,10 @@ export default function GlobalState(props) {
   return (
     <UserContext.Provider
       value={{
-        currentUser,
+        currentUser: userState,
         reports,
-        signin: () => signin(),
-        logout: () => logout(),
+        signin: signin,
+        logout: logout,
       }}
     >
       {props.children}

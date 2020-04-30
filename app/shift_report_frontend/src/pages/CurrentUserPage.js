@@ -10,9 +10,18 @@ export default function CurrentUserPage(props) {
 
   return (
     <React.Fragment>
-      <button onClick={context.signin}>Sign in</button>
-      <button onClick={context.logout}>Logout</button>
-      <div>Hello {context.currentUser.test}</div>
+      <button
+        onClick={() =>
+          context.signin({ email: "jci@pdx.edu", password: "password" })
+        }
+      >
+        Sign in
+      </button>
+      <button onClick={() => context.logout}>Logout</button>
+      <div>
+        Hello {context.currentUser.email}
+        {context.currentUser.test}
+      </div>
     </React.Fragment>
   );
 }
