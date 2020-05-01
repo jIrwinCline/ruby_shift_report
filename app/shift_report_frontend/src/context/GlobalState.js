@@ -75,7 +75,7 @@ export default function GlobalState(props) {
         .post(`${API_URL}/signup`, userDetails)
         .then((res) => {
           console.log(res.data);
-          localStorage.csrf = res.data.crsf;
+          localStorage.csrf = res.data.csrf;
           localStorage.signedIn = true;
           dispatch({
             type: SET_CURRENT_USER,
