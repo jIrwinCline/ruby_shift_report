@@ -29,13 +29,13 @@ export default function GlobalState(props) {
       .post(`${API_URL}/signin`, credentials)
       .then((res) => {
         console.log(res.data);
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: res.data,
+        });
       });
 
     //will call dispatch here
-    dispatch({
-      type: SET_CURRENT_USER,
-      payload: credentials /**will be user details */,
-    });
     console.log(userState);
   };
   const logout = () => {
