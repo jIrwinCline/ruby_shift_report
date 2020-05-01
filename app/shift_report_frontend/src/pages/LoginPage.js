@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
+import UserContext from "../context/user-context";
+import { useHistory } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
+  const context = useContext(UserContext);
+  const history = useHistory();
   // const [] = useState()
   const handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
-    console.log("signedin");
     event.preventDefault();
+    context.signin({ email: "jci@pdx.edu", password: "password" });
+    history.push("/");
   };
   return (
     <div>
@@ -25,7 +30,6 @@ export default function Login() {
           placeholder="password"
           type="text"
         />
-        <input />
         <button>Log in</button>
       </form>
     </div>
