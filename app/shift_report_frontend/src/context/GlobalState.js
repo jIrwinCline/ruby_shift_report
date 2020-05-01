@@ -44,9 +44,16 @@ export default function GlobalState(props) {
   };
   const logout = () => {
     //make api delete call, if status 200, update state with blank current user details
-    dispatch({
-      type: CLEAR_CURRENT_USER,
-    });
+    Api()
+      .delete(`${API_URL}/signin`)
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: CLEAR_CURRENT_USER,
+        }).catch((err) => {
+          console.error(err);
+        });
+      });
   };
   const register = (userDetails) => {
     Api()
