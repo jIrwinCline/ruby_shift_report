@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 import Api from "../api/Api";
-
+import axios from "axios";
 import UserContext from "./user-context";
 import {
   userReducer,
@@ -57,6 +57,7 @@ export default function GlobalState(props) {
   };
   const logout = () => {
     //make api delete call, if status 200, update state with blank current user details
+    console.log(axios.defaults);
     Api()
       .delete(`${API_URL}/signin`)
       .then((res) => {
@@ -69,6 +70,12 @@ export default function GlobalState(props) {
         });
       });
   };
+
+  /////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  ////////catch the error above/////////////
+  //////////////////////////////////////////
+  //////////////////////////////////////////
   const register = (userDetails) => {
     return new Promise((resolve, reject) => {
       Api()
