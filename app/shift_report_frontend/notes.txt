@@ -1,3 +1,5 @@
 great for axios and react hooks: https://www.robinwieruch.de/react-hooks-fetch-data
 
 great for useReducer and useContext hook: https://www.youtube.com/watch?v=R_7XRX7nLsw&t=10s
+
+using axios, rails, and react: https://dev.to/harrymlevine/rails-with-react---one-repo---part-3-nk
