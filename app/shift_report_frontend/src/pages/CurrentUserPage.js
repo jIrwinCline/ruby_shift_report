@@ -14,7 +14,6 @@ export default function CurrentUserPage(props) {
       <div>
         <p>Hello {context.currentUser.email}</p>
       </div>
-      <p>{context.currentUser.test}</p>
     </React.Fragment>
   );
 }

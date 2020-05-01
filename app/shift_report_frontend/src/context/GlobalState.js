@@ -1,7 +1,11 @@
 import React, { useState, useReducer } from "react";
+import Api from "../api/Api";
 
 import UserContext from "./user-context";
 import { userReducer, SET_CURRENT_USER, CLEAR_CURRENT_USER } from "./reducers";
+
+const API_URL = "http://localhost:3000";
+
 export default function GlobalState(props) {
   //   const [currentUser, setCurrentUser] = useState({
   //     email: null,
@@ -11,7 +15,7 @@ export default function GlobalState(props) {
   //     test: "test",
   //   });
   const [userState, dispatch] = useReducer(userReducer, {
-    currentUser: { email: null, test: "test" },
+    currentUser: { email: null },
   });
   const [reports, setReports] = useState({
     reports: [],
@@ -21,6 +25,11 @@ export default function GlobalState(props) {
     const { password, email } = credentials;
     //make api post call, if status 200, dispatch reducer with the user Details
     //if error status, dispatch errors
+    Api()
+      .post(`${API_URL}/signin`, credentials)
+      .then((res) => {
+        console.log(res.data);
+      });
 
     //will call dispatch here
     dispatch({
