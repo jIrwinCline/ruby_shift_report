@@ -18,6 +18,8 @@ export default function CurrentUserPage(props) {
       <button onClick={() => context.logout()}>Logout</button>
       <div>
         <p>Hello {context.currentUser.email}</p>
+        <p> {context.currentUser.fname}</p>
+        <p> {context.currentUser.dpsst}</p>
       </div>
     </React.Fragment>
   );

@@ -2,7 +2,9 @@ import React from "react";
 
 export default React.createContext({
   currentUser: {
-    test: "test",
+    fname: null,
+    lname: null,
+    dpsst: null,
     email: null,
   },
 });

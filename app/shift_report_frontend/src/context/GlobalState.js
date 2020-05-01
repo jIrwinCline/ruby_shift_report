@@ -70,22 +70,26 @@ export default function GlobalState(props) {
       });
   };
   const register = (userDetails) => {
-    Api()
-      .post(`${API_URL}/signup`, userDetails)
-      .then((res) => {
-        console.log(res.data);
-        localStorage.csrf = res.data.crsf;
-        localStorage.signedIn = true;
-        dispatch({
-          type: SET_CURRENT_USER,
-          payload: res.data,
+    return new Promise((resolve, reject) => {
+      Api()
+        .post(`${API_URL}/signup`, userDetails)
+        .then((res) => {
+          console.log(res.data);
+          localStorage.csrf = res.data.crsf;
+          localStorage.signedIn = true;
+          dispatch({
+            type: SET_CURRENT_USER,
+            payload: res.data,
+          });
+          resolve(res);
+        })
+        .catch((err) => {
+          delete localStorage.csrf;
+          delete localStorage.signedIn;
+          console.log(err);
+          reject(err);
         });
-      })
-      .catch((err) => {
-        delete localStorage.csrf;
-        delete localStorage.signedIn;
-        console.error(err);
-      });
+    });
   };
 
   return (

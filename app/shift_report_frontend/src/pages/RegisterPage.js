@@ -16,17 +16,17 @@ export default function Register(props) {
   const handleChange = (event) => {
     setUserDetails({ ...userDetails, [event.target.name]: event.target.value });
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    context.register({
+    await context.register({
       email: userDetails.email,
       password: userDetails.password,
-      passwordConfirmation: userDetails.passwordConfirmation,
-      // fname: userDetails.fname,
-      // lname: userDetails.lname,
-      // dpsst: userDetails.dpsst,
+      password_confirmation: userDetails.passwordConfirmation,
+      fname: userDetails.fname,
+      lname: userDetails.lname,
+      dpsst: userDetails.dpsst,
     });
-    history.push("/");
+    await history.push("/");
   };
   return (
     <div>
