@@ -2,7 +2,12 @@ import React, { useState, useReducer } from "react";
 import Api from "../api/Api";
 
 import UserContext from "./user-context";
-import { userReducer, SET_CURRENT_USER, CLEAR_CURRENT_USER } from "./reducers";
+import {
+  userReducer,
+  SET_CURRENT_USER,
+  CLEAR_CURRENT_USER,
+  CREATE_NEW_USER,
+} from "./reducers";
 
 const API_URL = "http://localhost:3000";
 
@@ -22,7 +27,6 @@ export default function GlobalState(props) {
   });
 
   const signin = (credentials) => {
-    const { password, email } = credentials;
     //make api post call, if status 200, dispatch reducer with the user Details
     //if error status, dispatch errors
     Api()
@@ -44,6 +48,20 @@ export default function GlobalState(props) {
       type: CLEAR_CURRENT_USER,
     });
   };
+  const register = (userDetails) => {
+    Api()
+      .post(`${API_URL}/signup`, userDetails)
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <UserContext.Provider
@@ -52,6 +70,7 @@ export default function GlobalState(props) {
         reports,
         signin: signin,
         logout: logout,
+        register: register,
       }}
     >
       {props.children}

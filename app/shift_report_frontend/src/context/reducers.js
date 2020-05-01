@@ -1,5 +1,6 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
+export const CREATE_NEW_USER = "CREATE_NEW_USER";
 
 const signin = (userDetails, state) => {
   const { email, fname, lname, dpsst } = userDetails;
