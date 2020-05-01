@@ -8,7 +8,7 @@ export default function CurrentUserPage(props) {
 
   useEffect(() => {
     console.log(context);
-    if (localStorage.signedIn == "false") {
+    if (!localStorage.signedIn) {
       history.push("/login");
     }
   }, []);

@@ -9,13 +9,13 @@ export default function Login(props) {
   const handleChange = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    context.signin({
+    await context.signin({
       email: credentials.email,
       password: credentials.password,
     });
-    history.push("/");
+    await history.push("/");
   };
   return (
     <div>

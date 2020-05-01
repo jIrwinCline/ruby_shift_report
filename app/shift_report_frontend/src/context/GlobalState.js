@@ -36,25 +36,24 @@ export default function GlobalState(props) {
   const signin = (credentials) => {
     //make api post call, if status 200, dispatch reducer with the user Details
     //if error status, dispatch errors***
-    Api()
-      .post(`${API_URL}/signin`, credentials)
-      .then((res) => {
-        localStorage.csrf = res.data.crsf;
-        localStorage.signedIn = true;
-        console.log(res.data.crsf);
-        dispatch({
-          type: SET_CURRENT_USER,
-          payload: res.data,
+    return new Promise((resolve, reject) => {
+      Api()
+        .post(`${API_URL}/signin`, credentials)
+        .then((res) => {
+          localStorage.csrf = res.data.crsf;
+          localStorage.signedIn = true;
+          dispatch({
+            type: SET_CURRENT_USER,
+            payload: res.data,
+          });
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+          delete localStorage.csrf;
+          delete localStorage.signedIn;
         });
-      })
-      .catch((err) => {
-        console.error(err);
-        delete localStorage.csrf;
-        delete localStorage.signedIn;
-      });
-
-    //will call dispatch here
-    console.log(userState);
+    });
   };
   const logout = () => {
     //make api delete call, if status 200, update state with blank current user details
