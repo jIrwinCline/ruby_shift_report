@@ -25,18 +25,32 @@ export default function GlobalState(props) {
   const [reports, setReports] = useState({
     reports: [],
   });
+  const checkSignedIn = () => {
+    if (localStorage.signedIn) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const signin = (credentials) => {
     //make api post call, if status 200, dispatch reducer with the user Details
-    //if error status, dispatch errors
+    //if error status, dispatch errors***
     Api()
       .post(`${API_URL}/signin`, credentials)
       .then((res) => {
-        console.log(res.data);
+        localStorage.csrf = res.data.crsf;
+        localStorage.signedIn = true;
+        console.log(res.data.crsf);
         dispatch({
           type: SET_CURRENT_USER,
           payload: res.data,
         });
+      })
+      .catch((err) => {
+        console.error(err);
+        delete localStorage.csrf;
+        delete localStorage.signedIn;
       });
 
     //will call dispatch here
@@ -47,7 +61,8 @@ export default function GlobalState(props) {
     Api()
       .delete(`${API_URL}/signin`)
       .then((res) => {
-        console.log(res.data);
+        delete localStorage.csrf;
+        delete localStorage.signedIn;
         dispatch({
           type: CLEAR_CURRENT_USER,
         }).catch((err) => {
@@ -60,12 +75,16 @@ export default function GlobalState(props) {
       .post(`${API_URL}/signup`, userDetails)
       .then((res) => {
         console.log(res.data);
+        localStorage.csrf = res.data.crsf;
+        localStorage.signedIn = true;
         dispatch({
           type: SET_CURRENT_USER,
           payload: res.data,
         });
       })
       .catch((err) => {
+        delete localStorage.csrf;
+        delete localStorage.signedIn;
         console.error(err);
       });
   };
@@ -78,6 +97,7 @@ export default function GlobalState(props) {
         signin: signin,
         logout: logout,
         register: register,
+        checkSignedIn: checkSignedIn,
       }}
     >
       {props.children}
