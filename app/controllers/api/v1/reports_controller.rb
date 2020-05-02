@@ -18,10 +18,12 @@ module Api
 
     # POST /reports
     def create
-      @report = current_user.records.build(report_params)
+      puts 'current user'
+      puts current_user
+      @report = current_user.reports.build(report_params)
 
       if @report.save
-        render json: @report, status: :created, location: @report
+        render json: @report, status: :created
       else
         render json: @report.errors, status: :unprocessable_entity
       end
@@ -49,7 +51,7 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def report_params
-        params.require(:report).permit(:body, :user_id)
+        params.require(:report).permit(:body, :title, :user_id)
       end
     end
   end

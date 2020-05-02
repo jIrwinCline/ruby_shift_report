@@ -42,13 +42,13 @@ export default function GlobalState(props) {
       Api()
         .post(`${API_URL}/signin`, credentials)
         .then((res) => {
-          const { fname, lname, dpsst, email } = res.data;
+          const { fname, lname, dpsst, email, id } = res.data;
           console.log(res);
           window.localStorage.csrf = res.data.csrf;
           window.localStorage.signedIn = true;
           window.localStorage.setItem(
             "currentUser",
-            JSON.stringify({ fname, lname, dpsst, email })
+            JSON.stringify({ fname, lname, dpsst, email, id })
           );
 
           dispatch({
@@ -88,13 +88,13 @@ export default function GlobalState(props) {
       Api()
         .post(`${API_URL}/signup`, userDetails)
         .then((res) => {
-          const { fname, lname, dpsst, email } = res.data;
+          const { fname, lname, dpsst, email, id } = res.data;
           console.log(res.data);
           window.localStorage.csrf = res.data.csrf;
           window.localStorage.signedIn = true;
           window.localStorage.setItem(
             "currentUser",
-            JSON.stringify({ fname, lname, dpsst, email })
+            JSON.stringify({ fname, lname, dpsst, email, id })
           );
           dispatch({
             type: SET_CURRENT_USER,
@@ -114,8 +114,30 @@ export default function GlobalState(props) {
 
   //Reports
   const startReport = (history) => {
-    //* start a report
-    history.push(`/report/${reportId}`);
+    //* start a report: send api call, return id, navigate to report page to add entries
+    const reportDetails = {
+      user_id: window.localStorage.currentUser.id,
+      title: "test report",
+    };
+    console.log(reportDetails);
+    return new Promise((resolve, reject) => {
+      Api()
+        .post(`${API_URL}/api/v1/reports`, reportDetails)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    })
+      .then((res) => {
+        console.log(res);
+        // const reportId = res.data.id;
+        // history.push(`/report/${reportId}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const makeEntry = (history) => {
