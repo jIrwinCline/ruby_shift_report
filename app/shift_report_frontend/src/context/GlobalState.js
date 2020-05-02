@@ -19,14 +19,16 @@ export default function GlobalState(props) {
   //     dpsst: null,
   //     test: "test",
   //   });
+  // const currentUser = JSON.parse("{ 'hi': 'hi' }");
+  console.log(window.localStorage.currentUser);
   const [userState, dispatch] = useReducer(userReducer, {
-    currentUser: { email: null },
+    currentUser: JSON.parse(window.localStorage.getItem("currentUser")),
   });
   const [reports, setReports] = useState({
     reports: [],
   });
   const checkSignedIn = () => {
-    if (localStorage.signedIn) {
+    if (window.localStorage.signedIn) {
       return true;
     } else {
       return false;
@@ -40,9 +42,15 @@ export default function GlobalState(props) {
       Api()
         .post(`${API_URL}/signin`, credentials)
         .then((res) => {
+          const { fname, lname, dpsst, email } = res.data;
           console.log(res);
-          localStorage.csrf = res.data.csrf;
-          localStorage.signedIn = true;
+          window.localStorage.csrf = res.data.csrf;
+          window.localStorage.signedIn = true;
+          window.localStorage.setItem(
+            "currentUser",
+            JSON.stringify({ fname, lname, dpsst, email })
+          );
+
           dispatch({
             type: SET_CURRENT_USER,
             payload: res.data,
@@ -51,8 +59,9 @@ export default function GlobalState(props) {
         })
         .catch((err) => {
           reject(err);
-          delete localStorage.csrf;
-          delete localStorage.signedIn;
+          delete window.localStorage.csrf;
+          delete window.localStorage.signedIn;
+          // delete window.localStorage.currentUser;
         });
     });
   };
@@ -62,8 +71,9 @@ export default function GlobalState(props) {
     Api()
       .delete(`${API_URL}/signin`)
       .then((res) => {
-        delete localStorage.csrf;
-        delete localStorage.signedIn;
+        delete window.localStorage.csrf;
+        delete window.localStorage.signedIn;
+        delete window.localStorage.currentUser;
         dispatch({
           type: CLEAR_CURRENT_USER,
         });
@@ -78,9 +88,14 @@ export default function GlobalState(props) {
       Api()
         .post(`${API_URL}/signup`, userDetails)
         .then((res) => {
+          const { fname, lname, dpsst, email } = res.data;
           console.log(res.data);
-          localStorage.csrf = res.data.csrf;
-          localStorage.signedIn = true;
+          window.localStorage.csrf = res.data.csrf;
+          window.localStorage.signedIn = true;
+          window.localStorage.setItem(
+            "currentUser",
+            JSON.stringify({ fname, lname, dpsst, email })
+          );
           dispatch({
             type: SET_CURRENT_USER,
             payload: res.data,
@@ -88,8 +103,9 @@ export default function GlobalState(props) {
           resolve(res);
         })
         .catch((err) => {
-          delete localStorage.csrf;
-          delete localStorage.signedIn;
+          delete window.localStorage.csrf;
+          delete window.localStorage.signedIn;
+          // delete window.localStorage.currentUser;
           console.log(err);
           reject(err);
         });
