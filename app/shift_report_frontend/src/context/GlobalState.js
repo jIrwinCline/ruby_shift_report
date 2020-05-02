@@ -93,6 +93,12 @@ export default function GlobalState(props) {
     });
   };
 
+  //Reports
+  const startReport = (history, userDetails) => {
+    //* start the word doc
+    history.push("/reports");
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -102,6 +108,7 @@ export default function GlobalState(props) {
         logout: logout,
         register: register,
         checkSignedIn: checkSignedIn,
+        startReport: startReport,
       }}
     >
       {props.children}

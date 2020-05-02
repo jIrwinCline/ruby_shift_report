@@ -21,6 +21,13 @@ export default function CurrentUserPage(props) {
         <p> {context.currentUser.fname}</p>
         <p> {context.currentUser.dpsst}</p>
       </div>
+      <button
+        onClick={() => {
+          context.startReport(history, context.currentUser);
+        }}
+      >
+        Create Report
+      </button>
     </React.Fragment>
   );
 }

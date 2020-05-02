@@ -7,7 +7,7 @@ export default () => {
     baseURL: "http://localhost:3000",
     withCredentials: true,
     headers: {
-      "X-CSRF-TOKEN": localStorage.csrf,
+      // "X-CSRF-TOKEN": localStorage.csrf,
       Accept: "applicaton/json",
       "Content-Type": "application/json",
     },

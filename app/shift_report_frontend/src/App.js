@@ -9,6 +9,7 @@ import {
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ReportsPage from "./pages/ReportsPage";
+import ReportPage from "./pages/ReportPage";
 import CreateReportPage from "./pages/CreateReportPage";
 import CurrentUserPage from "./pages/CurrentUserPage";
 
@@ -23,6 +24,7 @@ function App(props) {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/reports" component={ReportsPage} />
+          <Route exact path="/report/:id" component={ReportPage} />
           <Route exact path="/report/entries" component={CreateReportPage} />
         </Switch>
       </Router>
