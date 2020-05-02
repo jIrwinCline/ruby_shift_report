@@ -113,9 +113,17 @@ export default function GlobalState(props) {
   };
 
   //Reports
-  const startReport = (history, userDetails) => {
-    //* start the word doc
-    history.push("/reports");
+  const startReport = (history) => {
+    //* start a report
+    history.push(`/report/${reportId}`);
+  };
+
+  const makeEntry = (history) => {
+    //* send an entry belonging to a report
+  };
+
+  const generateDocx = (history) => {
+    //* generate a document with the bolonging entries, save doc to db?, then return the doc as an attachement
   };
 
   return (
