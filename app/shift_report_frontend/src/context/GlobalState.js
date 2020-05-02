@@ -40,7 +40,7 @@ export default function GlobalState(props) {
       Api()
         .post(`${API_URL}/signin`, credentials)
         .then((res) => {
-          localStorage.csrf = res.data.crsf;
+          localStorage.csrf = res.data.csrf;
           localStorage.signedIn = true;
           dispatch({
             type: SET_CURRENT_USER,
@@ -70,12 +70,6 @@ export default function GlobalState(props) {
         });
       });
   };
-
-  /////////////////////////////////////////////////
-  //////////////////////////////////////////////////
-  ////////catch the error above/////////////
-  //////////////////////////////////////////
-  //////////////////////////////////////////
   const register = (userDetails) => {
     return new Promise((resolve, reject) => {
       Api()
