@@ -15,7 +15,7 @@ export default function CurrentUserPage(props) {
 
   return (
     <React.Fragment>
-      <button onClick={() => context.logout()}>Logout</button>
+      <button onClick={() => context.logout(history)}>Logout</button>
       <div>
         <p>Hello {context.currentUser.email}</p>
         <p> {context.currentUser.fname}</p>

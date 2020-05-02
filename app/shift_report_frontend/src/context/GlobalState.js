@@ -56,7 +56,7 @@ export default function GlobalState(props) {
         });
     });
   };
-  const logout = () => {
+  const logout = (history) => {
     //make api delete call, if status 200, update state with blank current user details
     console.log(axios.defaults);
     Api()
@@ -66,9 +66,11 @@ export default function GlobalState(props) {
         delete localStorage.signedIn;
         dispatch({
           type: CLEAR_CURRENT_USER,
-        }).catch((err) => {
-          console.error(err);
         });
+        history.replace("/login");
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
   const register = (userDetails) => {
