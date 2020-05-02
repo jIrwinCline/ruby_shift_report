@@ -40,6 +40,7 @@ export default function GlobalState(props) {
       Api()
         .post(`${API_URL}/signin`, credentials)
         .then((res) => {
+          console.log(res);
           localStorage.csrf = res.data.csrf;
           localStorage.signedIn = true;
           dispatch({
