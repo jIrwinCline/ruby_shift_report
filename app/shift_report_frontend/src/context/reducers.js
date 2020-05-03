@@ -2,6 +2,7 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
 export const CREATE_NEW_USER = "CREATE_NEW_USER";
 export const SET_REPORT = "SET_REPORT";
+export const SET_ENTRIES = "SET_ENTRIES";
 
 const signin = (userDetails, state) => {
   const { email, fname, lname, dpsst, id } = userDetails;
@@ -33,6 +34,10 @@ const getReport = (reportDetails, state) => {
   };
 };
 
+const getEntries = (reportId) => {
+  // get all entries belonging to a report
+};
+
 export const userReducer = (state, action) => {
   switch (action.type) {
     case SET_CURRENT_USER:
@@ -48,6 +53,15 @@ export const reportReducer = (state, action) => {
   switch (action.type) {
     case SET_REPORT:
       return getReport(action.payload, state);
+    default:
+      return state;
+  }
+};
+
+export const entryReducer = (state, action) => {
+  switch (action.type) {
+    case SET_ENTRIES:
+      return getEntries(action.payload, state);
     default:
       return state;
   }

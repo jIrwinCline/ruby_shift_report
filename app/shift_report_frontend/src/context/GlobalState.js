@@ -9,6 +9,8 @@ import {
   CREATE_NEW_USER,
   reportReducer,
   SET_REPORT,
+  entryReducer,
+  SET_ENTRIES,
 } from "./reducers";
 
 const API_URL = "http://localhost:3000";
@@ -19,6 +21,10 @@ export default function GlobalState(props) {
   const [reportState, reportDispatch] = useReducer(
     reportReducer,
     context.currentReport
+  );
+  const [entryState, entryDispatch] = useReducer(
+    entryReducer,
+    context.currentEntries
   );
   const [userState, dispatch] = useReducer(userReducer, {
     currentUser: JSON.parse(window.localStorage.getItem("currentUser")),
@@ -163,8 +169,12 @@ export default function GlobalState(props) {
       });
   };
 
-  const makeEntry = (history) => {
+  const makeEntry = (history, entryDetails) => {
     //* send an entry belonging to a report
+  };
+
+  const getEntries = () => {
+    //* retrieve all entries belonging to a report
   };
 
   const generateDocx = (history) => {
@@ -182,6 +192,8 @@ export default function GlobalState(props) {
         currentReport: reportState.currentReport,
         startReport: startReport,
         getReport: getReport,
+        currentEntries: entryState.currentEntries,
+        makeEntry: makeEntry,
       }}
     >
       {props.children}

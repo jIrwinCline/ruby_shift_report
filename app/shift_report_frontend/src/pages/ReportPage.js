@@ -19,9 +19,24 @@ export default function ReportPage(props) {
     fetchData();
   }, []);
 
+  const handleChange = () => {
+    return null;
+  };
+
   return loading ? (
     <div>loading...</div>
   ) : (
-    <div>{context.currentReport.title}</div>
+    <div>
+      <h2>{context.currentReport.title}</h2>
+      <form>
+        <input
+          name="body"
+          onChange={handleChange}
+          placeholder="Make an entry"
+          type="text"
+        />
+        <button>Make Entry</button>
+      </form>
+    </div>
   );
 }
