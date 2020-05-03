@@ -142,7 +142,7 @@ export default function GlobalState(props) {
   const getReport = (reportId) => {
     return new Promise((resolve, reject) => {
       Api()
-        .get(`${API_URL}/api/v1/report/${reportId}`)
+        .get(`${API_URL}/api/v1/reports/${reportId}`)
         .then((res) => {
           reportDispatch({ type: SET_REPORT, payload: res.data });
           resolve(res.data);
