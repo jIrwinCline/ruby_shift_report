@@ -34,8 +34,11 @@ const getReport = (reportDetails, state) => {
   };
 };
 
-const getEntries = (reportId) => {
-  // get all entries belonging to a report
+const getEntries = (entries, state) => {
+  return {
+    ...state,
+    currentEntries: entries,
+  };
 };
 
 export const userReducer = (state, action) => {
