@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useContext, useState, useReducer } from "react";
 import Api from "../api/Api";
 import axios from "axios";
 import AppContext from "./app-context";
@@ -14,10 +14,12 @@ import {
 const API_URL = "http://localhost:3000";
 
 export default function GlobalState(props) {
+  const context = useContext(AppContext);
   console.log(window.localStorage.currentUser);
-  const [reportState, reportDispatch] = useReducer(reportReducer, {
-    currentReport: null,
-  });
+  const [reportState, reportDispatch] = useReducer(
+    reportReducer,
+    context.currentReport
+  );
   const [userState, dispatch] = useReducer(userReducer, {
     currentUser: JSON.parse(window.localStorage.getItem("currentUser")),
   });
@@ -174,11 +176,11 @@ export default function GlobalState(props) {
     <AppContext.Provider
       value={{
         currentUser: userState.currentUser,
-        reports,
         signin: signin,
         logout: logout,
         register: register,
         checkSignedIn: checkSignedIn,
+        currentReport: reportState,
         startReport: startReport,
         getReport: getReport,
       }}

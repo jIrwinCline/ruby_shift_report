@@ -26,9 +26,10 @@ const logout = (state) => {
 };
 const getReport = (reportDetails, state) => {
   const { id, user_id, title, body } = reportDetails;
+  console.log("REPORTTTTTTT: ", reportDetails);
   return {
     ...state,
-    report: { id, user_id, title, body },
+    currentReport: { id, user_id, title, body },
   };
 };
 

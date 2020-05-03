@@ -7,12 +7,16 @@ export default function ReportPage(props) {
   const history = useHistory();
 
   useEffect(() => {
-    const id = props.match.params.id;
-    console.log(props.match.params.id);
-    if (!window.localStorage.signedIn) {
-      history.push("/login");
-    }
-    context.getReport(id);
+    const afunc = async () => {
+      const id = props.match.params.id;
+      console.log(props.match.params.id);
+      if (!window.localStorage.signedIn) {
+        history.push("/login");
+      }
+      await context.getReport(id);
+      await console.log(context);
+    };
+    afunc();
   }, []);
 
   return <div>ReportPage</div>;
