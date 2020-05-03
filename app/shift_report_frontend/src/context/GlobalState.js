@@ -175,7 +175,7 @@ export default function GlobalState(props) {
     console.log(entryDetails);
     return new Promise((resolve, reject) => {
       Api()
-        .post(`${API_URL}/api/v1/entries`, entryDetails)
+        .post(`${API_URL}/api/v1/reports/${report_id}/entries`, entryDetails)
         .then((res) => {
           resolve(res);
         })

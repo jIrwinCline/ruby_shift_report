@@ -13,6 +13,7 @@ export default function ReportPage(props) {
     time: null,
     report_id: null,
   });
+
   useEffect(() => {
     async function fetchData() {
       const id = props.match.params.id;
@@ -34,6 +35,7 @@ export default function ReportPage(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await context.makeEntry({ ...entry, report_id: props.match.params.id });
+    context.getEntries(props.match.params.id);
   };
 
   return loading ? (
@@ -59,9 +61,9 @@ export default function ReportPage(props) {
         <br />
         <button>Make Entry</button>
       </form>
-      <button onClick={() => context.getEntries(props.match.params.id)}>
-        Get Entries
-      </button>
+      {/* <button onClick={() => context.getEntries(props.match.params.id)}> */}
+      {/* Get Entries */}
+      {/* </button> */}
       <EntryList reportId={props.match.params.id} />
     </div>
   );
