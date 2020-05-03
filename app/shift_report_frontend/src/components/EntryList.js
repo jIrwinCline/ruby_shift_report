@@ -18,7 +18,7 @@ export default function EntryList(props) {
   return (
     <div>
       {context.currentEntries.map((entry) => {
-        return <EntryItem item={entry} />;
+        return <EntryItem key={entry.id} item={entry} />;
       })}
     </div>
   );
