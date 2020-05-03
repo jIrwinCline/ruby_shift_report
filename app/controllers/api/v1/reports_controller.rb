@@ -46,7 +46,8 @@ module Api
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_report
-        @report = current_user.report.find(params[:id])
+        # @report = current_user.report.find(params[:id])
+        @report = Report.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.

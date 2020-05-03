@@ -2,7 +2,10 @@ import axios from "axios";
 
 export default () => {
   axios.defaults.headers.common["X-CSRF-TOKEN"] = window.localStorage.csrf;
-  console.log(axios.defaults.headers.common["X-CSRF-TOKEN"]);
+  // axios.defaults.headers.common[
+  //   "Authorization"
+  // ] = `Bearer ${window.localStorage.csrf}`;
+  console.log("Headers: ", axios.defaults.headers.common);
   return axios.create({
     baseURL: "http://localhost:3000",
     withCredentials: true,
