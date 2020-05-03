@@ -6,6 +6,11 @@ export default function ReportPage(props) {
   const context = useContext(AppContext);
   const history = useHistory();
   const [loading, setLoading] = useState(true);
+  const [entry, setEntry] = useState({
+    body: null,
+    time: null,
+    report_id: null,
+  });
   useEffect(() => {
     async function fetchData() {
       const id = props.match.params.id;
@@ -19,8 +24,12 @@ export default function ReportPage(props) {
     fetchData();
   }, []);
 
-  const handleChange = () => {
-    return null;
+  const handleChange = (event) => {
+    setEntry({ ...entry, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
   };
 
   return loading ? (
@@ -28,7 +37,7 @@ export default function ReportPage(props) {
   ) : (
     <div>
       <h2>{context.currentReport.title}</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           name="body"
           onChange={handleChange}

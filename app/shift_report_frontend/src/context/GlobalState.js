@@ -169,7 +169,7 @@ export default function GlobalState(props) {
       });
   };
 
-  const makeEntry = (history, entryDetails) => {
+  const makeEntry = (entryDetails) => {
     //* send an entry belonging to a report
   };
 
