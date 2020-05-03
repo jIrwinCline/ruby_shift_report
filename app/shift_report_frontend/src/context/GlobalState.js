@@ -171,6 +171,7 @@ export default function GlobalState(props) {
 
   const makeEntry = (entryDetails) => {
     //* send an entry belonging to a report
+    const { body, time } = entryDetails;
   };
 
   const getEntries = () => {

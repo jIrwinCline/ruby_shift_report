@@ -30,6 +30,7 @@ export default function ReportPage(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    await context.makeEntry({ ...entry, report_id: props.match.params.id });
   };
 
   return loading ? (
@@ -39,11 +40,20 @@ export default function ReportPage(props) {
       <h2>{context.currentReport.title}</h2>
       <form onSubmit={handleSubmit}>
         <input
+          name="time"
+          onChange={handleChange}
+          placeholder="Approximate time"
+          type="text"
+        />
+        <br />
+        <br />
+        <textarea
           name="body"
           onChange={handleChange}
           placeholder="Make an entry"
           type="text"
         />
+        <br />
         <button>Make Entry</button>
       </form>
     </div>
