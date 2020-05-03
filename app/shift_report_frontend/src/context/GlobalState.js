@@ -7,25 +7,19 @@ import {
   SET_CURRENT_USER,
   CLEAR_CURRENT_USER,
   CREATE_NEW_USER,
+  reportReducer,
+  SET_REPORT,
 } from "./reducers";
 
 const API_URL = "http://localhost:3000";
 
 export default function GlobalState(props) {
-  //   const [currentUser, setCurrentUser] = useState({
-  //     email: null,
-  //     fname: null,
-  //     lname: null,
-  //     dpsst: null,
-  //     test: "test",
-  //   });
-  // const currentUser = JSON.parse("{ 'hi': 'hi' }");
   console.log(window.localStorage.currentUser);
-  const [userState, dispatch] = useReducer(userReducer, {
-    currentUser: JSON.parse(window.localStorage.getItem("currentUser")),
-  });
   const [reportState, reportDispatch] = useReducer(reportReducer, {
     currentReport: null,
+  });
+  const [userState, dispatch] = useReducer(userReducer, {
+    currentUser: JSON.parse(window.localStorage.getItem("currentUser")),
   });
   const [reports, setReports] = useState({
     reports: [],
@@ -128,9 +122,34 @@ export default function GlobalState(props) {
         .post(`${API_URL}/api/v1/reports`, reportDetails)
         .then((res) => {
           history.push(`/report/${res.data.id}`);
+          resolve(res.data);
         })
         .catch((err) => {
           console.error(err);
+          reject(err);
+        });
+    })
+      .then((res) => {
+        console.log(res);
+        // const reportId = res.data.id;
+        // history.push(`/report/${reportId}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getReport = (reportId) => {
+    return new Promise((resolve, reject) => {
+      Api()
+        .get(`${API_URL}/api/v1/report/${reportId}`)
+        .then((res) => {
+          reportDispatch({ type: SET_REPORT, payload: res.data });
+          resolve(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+          reject(err);
         });
     })
       .then((res) => {
@@ -161,6 +180,7 @@ export default function GlobalState(props) {
         register: register,
         checkSignedIn: checkSignedIn,
         startReport: startReport,
+        getReport: getReport,
       }}
     >
       {props.children}
