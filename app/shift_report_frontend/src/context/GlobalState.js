@@ -184,15 +184,30 @@ export default function GlobalState(props) {
         });
     })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
       })
       .catch((err) => {
         console.error(err);
       });
   };
 
-  const getEntries = () => {
-    //* retrieve all entries belonging to a report
+  const getEntries = (reportId) => {
+    return new Promise((resolve, reject) => {
+      Api()
+        .get(`${API_URL}/api/v1/reports/${reportId}/entries`)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const generateDocx = (history) => {
@@ -212,6 +227,7 @@ export default function GlobalState(props) {
         getReport: getReport,
         currentEntries: entryState.currentEntries,
         makeEntry: makeEntry,
+        getEntries: getEntries,
       }}
     >
       {props.children}

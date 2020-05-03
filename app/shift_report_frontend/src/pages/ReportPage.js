@@ -56,6 +56,9 @@ export default function ReportPage(props) {
         <br />
         <button>Make Entry</button>
       </form>
+      <button onClick={() => context.getEntries(props.match.params.id)}>
+        Get Entries
+      </button>
     </div>
   );
 }
