@@ -1,7 +1,7 @@
 module Api
   module V1
     class EntriesController < ApplicationController
-    before_action :authorize_access_request!
+    # before_action :authorize_access_request!
     before_action :set_entry, only: [:show, :update, :destroy]
 
     # GET /entries
@@ -21,7 +21,7 @@ module Api
       @entry = Entry.new(entry_params)
 
       if @entry.save
-        render json: @entry, status: :created, location: @entry
+        render json: @entry, status: :created
       else
         render json: @entry.errors, status: :unprocessable_entity
       end
