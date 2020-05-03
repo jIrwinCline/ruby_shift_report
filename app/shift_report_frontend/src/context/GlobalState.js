@@ -196,6 +196,7 @@ export default function GlobalState(props) {
       Api()
         .get(`${API_URL}/api/v1/reports/${reportId}/entries`)
         .then((res) => {
+          entryDispatch({ type: SET_ENTRIES, payload: res.data });
           resolve(res);
         })
         .catch((err) => {

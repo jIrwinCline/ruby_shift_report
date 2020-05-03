@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
 
+import EntryList from "../components/EntryList";
+
 export default function ReportPage(props) {
   const context = useContext(AppContext);
   const history = useHistory();
@@ -19,6 +21,7 @@ export default function ReportPage(props) {
         history.push("/login");
       }
       await context.getReport(id);
+      await context.getEntries(id);
       setLoading(context.currentReport == undefined ? false : true);
     }
     fetchData();
@@ -59,6 +62,7 @@ export default function ReportPage(props) {
       <button onClick={() => context.getEntries(props.match.params.id)}>
         Get Entries
       </button>
+      <EntryList reportId={props.match.params.id} />
     </div>
   );
 }
