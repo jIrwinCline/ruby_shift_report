@@ -49,7 +49,7 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def entry_params
-        params.require(:entry).permit(:body, :report)
+        params.require(:entry).permit(:body, :report_id, :time)
       end
     end
   end
