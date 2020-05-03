@@ -13,4 +13,5 @@ export default React.createContext({
     title: null,
     body: null,
   },
+  currentEntries: [],
 });
