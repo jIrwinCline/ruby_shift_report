@@ -6,7 +6,7 @@ module Api
 
     # GET /entries
     def index
-      @entries = Entry.where(:user_id: entry_params["user_id"])
+      @entries = Entry.where(report_id: entry_params["report_id"])
 
       render json: @entries
     end
@@ -49,7 +49,7 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def entry_params
-        params.require(:entry).permit(:body, :report_id, :time)
+        params.permit(:body, :report_id, :time)
       end
     end
   end
