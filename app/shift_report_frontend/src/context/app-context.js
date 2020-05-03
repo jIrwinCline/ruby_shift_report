@@ -7,4 +7,10 @@ export default React.createContext({
     dpsst: null,
     email: null,
   },
+  report: {
+    id: null,
+    user_id: null,
+    title: null,
+    body: null,
+  },
 });

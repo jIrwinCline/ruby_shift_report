@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 import Api from "../api/Api";
 import axios from "axios";
-import UserContext from "./user-context";
+import AppContext from "./app-context";
 import {
   userReducer,
   SET_CURRENT_USER,
@@ -23,6 +23,9 @@ export default function GlobalState(props) {
   console.log(window.localStorage.currentUser);
   const [userState, dispatch] = useReducer(userReducer, {
     currentUser: JSON.parse(window.localStorage.getItem("currentUser")),
+  });
+  const [reportState, reportDispatch] = useReducer(reportReducer, {
+    currentReport: null,
   });
   const [reports, setReports] = useState({
     reports: [],
@@ -124,7 +127,7 @@ export default function GlobalState(props) {
       Api()
         .post(`${API_URL}/api/v1/reports`, reportDetails)
         .then((res) => {
-          console.log(res);
+          history.push(`/report/${res.data.id}`);
         })
         .catch((err) => {
           console.error(err);
@@ -149,7 +152,7 @@ export default function GlobalState(props) {
   };
 
   return (
-    <UserContext.Provider
+    <AppContext.Provider
       value={{
         currentUser: userState.currentUser,
         reports,
@@ -161,6 +164,6 @@ export default function GlobalState(props) {
       }}
     >
       {props.children}
-    </UserContext.Provider>
+    </AppContext.Provider>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import UserContext from "../context/user-context";
+import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
 
 export default function CurrentUserPage(props) {
-  const context = useContext(UserContext);
+  const context = useContext(AppContext);
   const history = useHistory();
 
   useEffect(() => {

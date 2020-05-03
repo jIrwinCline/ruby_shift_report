@@ -1,9 +1,9 @@
 import React, { useContext, useReducer, useState } from "react";
-import UserContext from "../context/user-context";
+import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
 
 export default function Register(props) {
-  const context = useContext(UserContext);
+  const context = useContext(AppContext);
   const history = useHistory();
   const [userDetails, setUserDetails] = useState({
     email: "",
