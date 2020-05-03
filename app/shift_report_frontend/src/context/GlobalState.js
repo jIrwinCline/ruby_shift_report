@@ -171,7 +171,24 @@ export default function GlobalState(props) {
 
   const makeEntry = (entryDetails) => {
     //* send an entry belonging to a report
-    const { body, time } = entryDetails;
+    const { body, time, report_id } = entryDetails;
+    console.log(entryDetails);
+    return new Promise((resolve, reject) => {
+      Api()
+        .post(`${API_URL}/api/v1/entries`, entryDetails)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const getEntries = () => {
