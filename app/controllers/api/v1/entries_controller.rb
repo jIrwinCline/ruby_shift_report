@@ -6,7 +6,7 @@ module Api
 
     # GET /entries
     def index
-      @entries = Entry.all
+      @entries = Entry.where(:user_id: entry_params["user_id"])
 
       render json: @entries
     end
