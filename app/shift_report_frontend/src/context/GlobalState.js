@@ -15,7 +15,7 @@ const API_URL = "http://localhost:3000";
 
 export default function GlobalState(props) {
   const context = useContext(AppContext);
-  console.log(window.localStorage.currentUser);
+  console.log(context.currentReport);
   const [reportState, reportDispatch] = useReducer(
     reportReducer,
     context.currentReport
@@ -118,13 +118,12 @@ export default function GlobalState(props) {
       user_id: window.localStorage.currentUser.id,
       title: "test report",
     };
-    console.log(reportDetails);
     return new Promise((resolve, reject) => {
+      let paramId;
       Api()
         .post(`${API_URL}/api/v1/reports`, reportDetails)
         .then((res) => {
-          history.push(`/report/${res.data.id}`);
-          resolve(res.data);
+          resolve(res);
         })
         .catch((err) => {
           console.error(err);
@@ -132,7 +131,7 @@ export default function GlobalState(props) {
         });
     })
       .then((res) => {
-        console.log(res);
+        history.push(`/report/${res.data.id}`);
         // const reportId = res.data.id;
         // history.push(`/report/${reportId}`);
       })
@@ -180,7 +179,7 @@ export default function GlobalState(props) {
         logout: logout,
         register: register,
         checkSignedIn: checkSignedIn,
-        currentReport: reportState,
+        currentReport: reportState.currentReport,
         startReport: startReport,
         getReport: getReport,
       }}
