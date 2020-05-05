@@ -211,8 +211,26 @@ export default function GlobalState(props) {
       });
   };
 
-  const generateDocx = (history) => {
+  const generateDocx = (reportId) => {
     //* generate a document with the bolonging entries, save doc to db?, then return the doc as an attachement
+    return new Promise((resolve, reject) => {
+      console.log(reportId);
+      Api()
+        .post(`${API_URL}/api/v1/reports/${reportId}/generate`)
+        .then((res) => {
+          // entryDispatch({ type: SET_ENTRIES, payload: res.data });
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -229,6 +247,7 @@ export default function GlobalState(props) {
         currentEntries: entryState.currentEntries,
         makeEntry: makeEntry,
         getEntries: getEntries,
+        generateDocx: generateDocx,
       }}
     >
       {props.children}

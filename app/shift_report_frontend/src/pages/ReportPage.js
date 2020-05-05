@@ -61,7 +61,9 @@ export default function ReportPage(props) {
         <br />
         <button>Make Entry</button>
       </form>
-      <button>Generate Report</button>
+      <button onClick={() => context.generateDocx(props.match.params.id)}>
+        Generate Report
+      </button>
       <EntryList reportId={props.match.params.id} />
     </div>
   );
