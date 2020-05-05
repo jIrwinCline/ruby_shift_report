@@ -41,8 +41,9 @@ module Api
       @report.destroy
     end
 
+    # POST /reports/1/generate
     def generate
-      render json: {test: "test", report: @report}
+      render json: { report: @report, entries: @report.entries.all, user: User.find(@report.user_id)}
     end
 
     private
