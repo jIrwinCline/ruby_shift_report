@@ -63,7 +63,7 @@ A few of the things you can do with the app:
 ##### Frontend
 - Navigate to the shift_report_frontend directory in /app/ then run `npm install`
 - Then run `npm start` to run the frontend on localhost:3006
-- Open your preffered browser and navigate to https://localhost:3006
+- Open your preffered browser and navigate to http://localhost:3006
 
 ## Bugs
 
