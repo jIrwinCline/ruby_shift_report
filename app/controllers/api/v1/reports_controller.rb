@@ -43,9 +43,11 @@ module Api
 
     # POST /reports/1/generate
     def generate
-      @report.generate_doc({ report: @report, entries: @report.entries.all, user: User.find(@report.user_id)})
+
+      # render json: @report.generate_doc({ report: @report, entries: @report.entries.all, user: User.find(@report.user_id)})
+      render json: @report.generate_doc
       # render json: { report: @report, entries: @report.entries.all, user: User.find(@report.user_id)}
-      send_file "example.docx"
+      # send_file "example.docx"
     end
 
     private
