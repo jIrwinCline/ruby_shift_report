@@ -43,14 +43,7 @@ module Api
 
     # POST /reports/1/generate
     def generate
-      Caracal::Document.save 'example.docx' do |doc|
-        doc.h1 'Page Header'
-        doc.hr
-        doc.p
-        doc.h2 'Section 1'
-        doc.p 'Lorem ipsum dolor....'
-        doc.p
-      end
+      @report.generate_doc({ report: @report, entries: @report.entries.all, user: User.find(@report.user_id)})
       # render json: { report: @report, entries: @report.entries.all, user: User.find(@report.user_id)}
       send_file "example.docx"
     end
