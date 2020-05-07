@@ -18,7 +18,7 @@ class Report < ApplicationRecord
       docxEntries.push(nil) 
       docxEntries.push(entry)
     end
-    doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? entry.body : "" })
+    doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}    #{entry.body}" : "" })
     # entries.each do |entry|
     #   doc.bookmarks['start'].insert_text_after("#{entry.body}")
     # end
