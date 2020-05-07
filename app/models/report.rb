@@ -15,11 +15,13 @@ class Report < ApplicationRecord
 
     doc = Docx::Document.open("template.docx")
     docxEntries = []
+
     # doc.bookmarks['day'].insert_after("SATURDAY")
     entries.each_with_index do |entry, index|
       docxEntries.push(nil) 
       docxEntries.push(entry)
     end
+
     doc.paragraphs.each do |p|
       p.each_text_run do |tr|
         if tr.text == "SATURDAY"
@@ -31,11 +33,10 @@ class Report < ApplicationRecord
         end
       end
     end
+
     # doc.bookmarks['day'].insert_text_after("SATURDAY")
     doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}    #{entry.body}" : "" })
-    # entries.each do |entry|
-    #   doc.bookmarks['start'].insert_text_after("#{entry.body}")
-    # end
+
     doc.save('exampleUpdate.docx')
     { report: report, entries: entries, user: user}
   end
