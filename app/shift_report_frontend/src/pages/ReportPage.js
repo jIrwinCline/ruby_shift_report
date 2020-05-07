@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
 
+import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import SendIcon from "@material-ui/icons/Send";
@@ -54,45 +55,53 @@ export default function ReportPage(props) {
     <div>loading...</div>
   ) : (
     <div>
-      <h2>{context.currentReport.title}</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="time"
-          onChange={handleChange}
-          placeholder="Approximate time"
-          type="text"
-        />
-        <br />
-        <br />
-        <textarea
-          name="body"
-          onChange={handleChange}
-          placeholder="Make an entry"
-          type="text"
-        />
-        <br />
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          startIcon={<SendIcon />}
-        >
-          Make Entry
-        </Button>
-      </form>
-      <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        startIcon={<SaveIcon />}
-        onClick={() => context.generateDocx(props.match.params.id)}
-      >
-        Generate Report
-      </Button>
-      {/* <button onClick={() => context.generateDocx(props.match.params.id)}> */}
-      {/* Generate Report
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <h2>{context.currentReport.title}</h2>
+        </Grid>
+        <Grid item xs={12}>
+          <form onSubmit={handleSubmit}>
+            <input
+              name="time"
+              onChange={handleChange}
+              placeholder="Approximate time"
+              type="text"
+            />
+            <br />
+            <br />
+            <textarea
+              name="body"
+              onChange={handleChange}
+              placeholder="Make an entry"
+              type="text"
+            />
+            <br />
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              startIcon={<SendIcon />}
+            >
+              Make Entry
+            </Button>
+          </form>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<SaveIcon />}
+            onClick={() => context.generateDocx(props.match.params.id)}
+          >
+            Generate Report
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          {/* <button onClick={() => context.generateDocx(props.match.params.id)}> */}
+          {/* Generate Report
       </button> */}
-      <EntryList reportId={props.match.params.id} />
+          <EntryList reportId={props.match.params.id} />
+        </Grid>
+      </Grid>
     </div>
   );
 }
