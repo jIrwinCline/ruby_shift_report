@@ -27,7 +27,7 @@ class Report < ApplicationRecord
         end
         if tr.text == ", APRIL 12th , 2020"
          
-          tr.text=(", #{date.strftime("%^B")} #{date.strftime("%-d")} , #{date.strftime("%Y")}")
+          tr.text=(", #{date.strftime("%^B")} #{format_day(date.strftime("%-d"))} , #{date.strftime("%Y")}")
         end
       end
     end
@@ -38,6 +38,18 @@ class Report < ApplicationRecord
     # end
     doc.save('exampleUpdate.docx')
     { report: report, entries: entries, user: user}
+  end
+
+  private
+
+  def format_day(day)
+    if (4..20).include?(day.to_i) || (24..30).include?(day.to_i)
+      day.concat("th")
+    else
+      day.concat('st') if day[-1] == "1"
+      day.concat('nd') if day[-1] == "2"
+      day.concat('rd') if day[-1] == "3"
+    end
   end
   
 end
