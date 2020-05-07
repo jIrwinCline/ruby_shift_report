@@ -15,10 +15,6 @@ class Report < ApplicationRecord
     docxEntries = []
     
     entries.each_with_index do |entry, index|
-      if index+1 % 2 == 0 
-        p "yes"
-      end
-      
       docxEntries.push(nil) 
       docxEntries.push(entry)
     end
