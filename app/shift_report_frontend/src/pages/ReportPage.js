@@ -1,13 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
-
+// MUI
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import SendIcon from "@material-ui/icons/Send";
 import { makeStyles } from "@material-ui/core/styles";
-
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+// Components
 import EntryList from "../components/EntryList";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,12 +69,24 @@ export default function ReportPage(props) {
           <Grid container>
             <form id="entry-form" onSubmit={handleSubmit}>
               <Grid item xs={12}>
-                <input
-                  name="time"
-                  onChange={handleChange}
-                  placeholder="Approximate time"
-                  type="text"
-                />
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardTimePicker
+                    margin="normal"
+                    id="time-picker"
+                    label="Time picker"
+                    // value={selectedDate}
+                    onChange={handleChange}
+                    KeyboardButtonProps={{
+                      "aria-label": "change time",
+                    }}
+                  />
+                  <input
+                    name="time"
+                    onChange={handleChange}
+                    placeholder="Approximate time"
+                    type="text"
+                  />
+                </MuiPickersUtilsProvider>
               </Grid>
               <Grid item xs={12}>
                 <textarea
