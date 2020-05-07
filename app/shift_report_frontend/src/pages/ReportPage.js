@@ -2,9 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
 
+import Button from "@material-ui/core/Button";
+import SaveIcon from "@material-ui/icons/Save";
+import SendIcon from "@material-ui/icons/Send";
+import { makeStyles } from "@material-ui/core/styles";
+
 import EntryList from "../components/EntryList";
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
 export default function ReportPage(props) {
+  const classes = useStyles();
   const context = useContext(AppContext);
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -59,11 +71,27 @@ export default function ReportPage(props) {
           type="text"
         />
         <br />
-        <button>Make Entry</button>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          startIcon={<SendIcon />}
+        >
+          Make Entry
+        </Button>
       </form>
-      <button onClick={() => context.generateDocx(props.match.params.id)}>
+      <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<SaveIcon />}
+        onClick={() => context.generateDocx(props.match.params.id)}
+      >
         Generate Report
-      </button>
+      </Button>
+      {/* <button onClick={() => context.generateDocx(props.match.params.id)}> */}
+      {/* Generate Report
+      </button> */}
       <EntryList reportId={props.match.params.id} />
     </div>
   );
