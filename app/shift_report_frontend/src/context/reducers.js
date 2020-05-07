@@ -1,6 +1,5 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
-export const CREATE_NEW_USER = "CREATE_NEW_USER";
 export const SET_REPORT = "SET_REPORT";
 export const SET_ENTRIES = "SET_ENTRIES";
 

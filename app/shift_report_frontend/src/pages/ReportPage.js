@@ -70,7 +70,7 @@ export default function ReportPage(props) {
             <form id="entry-form" onSubmit={handleSubmit}>
               <Grid item xs={12}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  {/*  <KeyboardTimePicker
+                  <KeyboardTimePicker
                     margin="normal"
                     id="time-picker"
                     label="Time picker"
@@ -79,7 +79,7 @@ export default function ReportPage(props) {
                     KeyboardButtonProps={{
                       "aria-label": "change time",
                     }}
-                  /> */}
+                  />
                   <input
                     name="time"
                     onChange={handleChange}
