@@ -59,24 +59,31 @@ export default function ReportPage(props) {
         <Grid item xs={12}>
           <h2>{context.currentReport.title}</h2>
         </Grid>
-        <Grid item xs={12}>
-          <form onSubmit={handleSubmit}>
-            <input
-              name="time"
-              onChange={handleChange}
-              placeholder="Approximate time"
-              type="text"
-            />
-            <br />
-            <br />
-            <textarea
-              name="body"
-              onChange={handleChange}
-              placeholder="Make an entry"
-              type="text"
-            />
-            <br />
+        <Grid container xs={12}>
+          <Grid container xs={12}>
+            <form id="entry-form" onSubmit={handleSubmit}>
+              <Grid item xs={12}>
+                <input
+                  name="time"
+                  onChange={handleChange}
+                  placeholder="Approximate time"
+                  type="text"
+                />
+              </Grid>
+              <Grid item={12}>
+                <textarea
+                  name="body"
+                  onChange={handleChange}
+                  placeholder="Make an entry"
+                  type="text"
+                />
+              </Grid>
+            </form>
+          </Grid>
+          <Grid item xs={12}>
             <Button
+              type="submit"
+              form="entry-form"
               variant="contained"
               color="primary"
               className={classes.button}
@@ -84,21 +91,18 @@ export default function ReportPage(props) {
             >
               Make Entry
             </Button>
-          </form>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<SaveIcon />}
-            onClick={() => context.generateDocx(props.match.params.id)}
-          >
-            Generate Report
-          </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              startIcon={<SaveIcon />}
+              onClick={() => context.generateDocx(props.match.params.id)}
+            >
+              Generate Report
+            </Button>
+          </Grid>
         </Grid>
         <Grid item xs={12}>
-          {/* <button onClick={() => context.generateDocx(props.match.params.id)}> */}
-          {/* Generate Report
-      </button> */}
           <EntryList reportId={props.match.params.id} />
         </Grid>
       </Grid>
