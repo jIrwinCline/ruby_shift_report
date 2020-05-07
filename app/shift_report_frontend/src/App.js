@@ -25,7 +25,7 @@ function App(props) {
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/reports" component={ReportsPage} />
           <Route exact path="/report/:id" component={ReportPage} />
-          <Route exact path="/report/entries" component={CreateReportPage} />
+          {/* <Route exact path="/report/entries" component={CreateReportPage} /> */}
         </Switch>
       </Router>
     </GlobalState>

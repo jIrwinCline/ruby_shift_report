@@ -2,7 +2,7 @@ module Api
   module V1
     class ReportsController < ApplicationController
     before_action :authorize_access_request!, except: [:show, :index]
-    before_action :set_report, only: [:show, :update, :destroy]
+    before_action :set_report, only: [:generate ,:show, :update, :destroy]
 
     # GET /reports
     def index
@@ -18,8 +18,6 @@ module Api
 
     # POST /reports
     def create
-      puts 'current user'
-      puts current_user
       @report = current_user.reports.build(report_params)
 
       if @report.save
@@ -43,15 +41,20 @@ module Api
       @report.destroy
     end
 
+    # POST /reports/1/generate
     def generate
-      puts "generate Route"
+
+      # render json: @report.generate_doc({ report: @report, entries: @report.entries.all, user: User.find(@report.user_id)})
+      render json: @report.generate_doc
+      # render json: { report: @report, entries: @report.entries.all, user: User.find(@report.user_id)}
+      # send_file "example.docx"
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_report
         # @report = current_user.report.find(params[:id])
-        @report = Report.find(params[:id])
+        @report = Report.find(params[params.has_key?(:id) ? :id : :report_id ])
       end
 
       # Only allow a trusted parameter "white list" through.
