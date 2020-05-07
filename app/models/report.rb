@@ -12,7 +12,7 @@ class Report < ApplicationRecord
     user = User.find(self.user_id)
     
     doc = Docx::Document.open("template.docx")
-    doc.bookmarks['start'].insert_text_after("Hello World")
+    doc.bookmarks['start'].insert_multiple_lines(entries.map {|entry| "#{entry.body}" })
     doc.save('exampleUpdate.docx')
     { report: report, entries: entries, user: user}
   end
