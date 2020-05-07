@@ -59,8 +59,8 @@ export default function ReportPage(props) {
         <Grid item xs={12}>
           <h2>{context.currentReport.title}</h2>
         </Grid>
-        <Grid container xs={12}>
-          <Grid container xs={12}>
+        <Grid container>
+          <Grid container>
             <form id="entry-form" onSubmit={handleSubmit}>
               <Grid item xs={12}>
                 <input
@@ -70,7 +70,7 @@ export default function ReportPage(props) {
                   type="text"
                 />
               </Grid>
-              <Grid item={12}>
+              <Grid item xs={12}>
                 <textarea
                   name="body"
                   onChange={handleChange}
