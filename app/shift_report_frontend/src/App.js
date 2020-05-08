@@ -47,7 +47,7 @@ function App(props) {
   const classes = useStyles();
 
   const SidebarRoutes = (props) => (
-    <>
+    <div className="body-container">
       <Sidebar items={items} />
 
       <div className="content-container">
@@ -56,7 +56,7 @@ function App(props) {
           <Route exact path="/report/:id" component={ReportPage} />
         </Switch>
       </div>
-    </>
+    </div>
   );
 
   return (
