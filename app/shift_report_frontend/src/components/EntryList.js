@@ -7,7 +7,7 @@ export default function EntryList(props) {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div>
+    <div className="entry-list">
       {context.currentEntries.map((entry) => {
         return <EntryItem key={entry.id} item={entry} />;
       })}

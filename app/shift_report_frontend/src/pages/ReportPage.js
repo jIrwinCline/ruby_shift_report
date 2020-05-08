@@ -91,10 +91,9 @@ export default function ReportPage(props) {
         <Grid container>
           <form id="entry-form" onSubmit={handleSubmit}>
             <Grid item xs={12}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <MuiPickersUtilsProvider id="time-picker" utils={DateFnsUtils}>
                 <KeyboardTimePicker
                   margin="normal"
-                  id="time-picker"
                   label="Time picker"
                   value={entryTime}
                   onChange={handleDateChange}
