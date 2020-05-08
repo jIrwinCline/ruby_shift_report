@@ -8,6 +8,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import SendIcon from "@material-ui/icons/Send";
 import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
+import TextField from "@material-ui/core/TextField";
 // import MomentUtils from "@date-io/moment";
 import {
   MuiPickersUtilsProvider,
@@ -55,13 +56,12 @@ export default function ReportPage(props) {
     setEntry({ ...entry, [event.target.name]: event.target.value });
   };
   const handleDateChange = (date) => {
-    console.log(formatAMPM(date));
-    setEntry({ ...entry, time: date });
-    console.log(entry);
+    setEntry({ ...entry, time: formatAMPM(date) });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     await context.makeEntry({ ...entry, report_id: props.match.params.id });
     context.getEntries(props.match.params.id);
   };
@@ -105,11 +105,21 @@ export default function ReportPage(props) {
                 </MuiPickersUtilsProvider>
               </Grid>
               <Grid item xs={12}>
-                <textarea
+                {/* <textarea
                   name="body"
                   onChange={handleChange}
                   placeholder="Make an entry"
                   type="text"
+                /> */}
+
+                <TextField
+                  name="body"
+                  label="What happened?"
+                  multiline
+                  rows={4}
+                  onChange={handleChange}
+                  // defaultValue="Default Value"
+                  variant="outlined"
                 />
               </Grid>
             </form>
