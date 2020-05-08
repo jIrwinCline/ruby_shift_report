@@ -83,9 +83,9 @@ export default function ReportPage(props) {
   return loading ? (
     <div>loading...</div>
   ) : (
-    <Grid className="height100" container spacing={3}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
-        <h2>{context.currentReport.title}</h2>
+        <h1 className="report-header">{context.currentReport.title} Details</h1>
       </Grid>
       <Grid container>
         <Grid container>
