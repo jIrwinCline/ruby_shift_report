@@ -10,18 +10,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import TextField from "@material-ui/core/TextField";
 //ElasticUI
-// import {
-//   EuiPage,
-//   EuiPageBody,
-//   EuiPageContent,
-//   EuiPageContentBody,
-//   EuiPageContentHeader,
-//   EuiPageContentHeaderSection,
-//   EuiPageHeader,
-//   EuiPageHeaderSection,
-//   EuiPageSideBar,
-//   EuiTitle,
-// } from "@elastic/eui";
+import {
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
+  EuiTitle,
+} from "@elastic/eui";
 // import MomentUtils from "@date-io/moment";
 import {
   MuiPickersUtilsProvider,
@@ -83,73 +83,64 @@ export default function ReportPage(props) {
   return loading ? (
     <div>loading...</div>
   ) : (
-    <div>
-      <button
-        onClick={() => {
-          console.log(entry);
-        }}
-      >
-        test
-      </button>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <h2>{context.currentReport.title}</h2>
-        </Grid>
+    <Grid className="height100" container spacing={3}>
+      <Grid item xs={12}>
+        <h2>{context.currentReport.title}</h2>
+      </Grid>
+      <Grid container>
         <Grid container>
-          <Grid container>
-            <form id="entry-form" onSubmit={handleSubmit}>
-              <Grid item xs={12}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardTimePicker
-                    margin="normal"
-                    id="time-picker"
-                    label="Time picker"
-                    value={entryTime}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change time",
-                    }}
-                  />
-                </MuiPickersUtilsProvider>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="body"
-                  label="What happened?"
-                  multiline
-                  rows={4}
-                  onChange={handleChange}
-                  variant="outlined"
+          <form id="entry-form" onSubmit={handleSubmit}>
+            <Grid item xs={12}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardTimePicker
+                  margin="normal"
+                  id="time-picker"
+                  label="Time picker"
+                  value={entryTime}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    "aria-label": "change time",
+                  }}
                 />
-              </Grid>
-            </form>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              form="entry-form"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              startIcon={<SendIcon />}
-            >
-              Make Entry
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              startIcon={<SaveIcon />}
-              onClick={() => context.generateDocx(props.match.params.id)}
-            >
-              Generate Report
-            </Button>
-          </Grid>
+              </MuiPickersUtilsProvider>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="body"
+                label="What happened?"
+                multiline
+                rows={4}
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </Grid>
+          </form>
         </Grid>
         <Grid item xs={12}>
-          <EntryList reportId={props.match.params.id} />
+          <Button
+            type="submit"
+            form="entry-form"
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            startIcon={<SendIcon />}
+          >
+            Make Entry
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<SaveIcon />}
+            onClick={() => context.generateDocx(props.match.params.id)}
+          >
+            Generate Report
+          </Button>
         </Grid>
       </Grid>
-    </div>
+      <Grid item xs={12}>
+        <EntryList reportId={props.match.params.id} />
+      </Grid>
+    </Grid>
   );
 }
