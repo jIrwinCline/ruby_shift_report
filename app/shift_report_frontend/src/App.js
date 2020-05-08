@@ -12,20 +12,24 @@ import ReportsPage from "./pages/ReportsPage";
 import ReportPage from "./pages/ReportPage";
 import CurrentUserPage from "./pages/CurrentUserPage";
 
+import Container from "@material-ui/core/Container";
+
 import GlobalState from "./context/GlobalState";
 
 function App(props) {
   return (
     <GlobalState>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={CurrentUserPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/reports" component={ReportsPage} />
-          <Route exact path="/report/:id" component={ReportPage} />
-        </Switch>
-      </Router>
+      <Container maxWidth="sm">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={CurrentUserPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/reports" component={ReportsPage} />
+            <Route exact path="/report/:id" component={ReportPage} />
+          </Switch>
+        </Router>
+      </Container>
     </GlobalState>
   );
 }
