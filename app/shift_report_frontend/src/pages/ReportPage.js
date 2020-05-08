@@ -69,6 +69,7 @@ export default function ReportPage(props) {
     setEntry({ ...entry, [event.target.name]: event.target.value });
   };
   const handleDateChange = (date) => {
+    setEntryTime(date);
     setEntry({ ...entry, time: formatAMPM(date) });
   };
 
@@ -103,35 +104,21 @@ export default function ReportPage(props) {
                     margin="normal"
                     id="time-picker"
                     label="Time picker"
-                    // value={selectedDate}
+                    value={entryTime}
                     onChange={handleDateChange}
                     KeyboardButtonProps={{
                       "aria-label": "change time",
                     }}
                   />
-                  {/* <input
-                    name="time"
-                    onChange={handleChange}
-                    placeholder="Approximate time"
-                    type="text"
-                  /> */}
                 </MuiPickersUtilsProvider>
               </Grid>
               <Grid item xs={12}>
-                {/* <textarea
-                  name="body"
-                  onChange={handleChange}
-                  placeholder="Make an entry"
-                  type="text"
-                /> */}
-
                 <TextField
                   name="body"
                   label="What happened?"
                   multiline
                   rows={4}
                   onChange={handleChange}
-                  // defaultValue="Default Value"
                   variant="outlined"
                 />
               </Grid>
