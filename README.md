@@ -45,6 +45,7 @@ A few of the things you can do with the app:
 - JavaScript
 - React.js
 - ContextAPI
+- MaterialUI
 - VS Code
 - Git and Github
 - Ruby 2.5.6
