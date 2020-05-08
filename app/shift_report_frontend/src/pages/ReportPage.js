@@ -35,7 +35,7 @@ import EntryList from "../components/EntryList";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1),
+    // margin: theme.spacing(1),
   },
 }));
 
@@ -106,6 +106,8 @@ export default function ReportPage(props) {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                // fullWidth
+                className="entry-input"
                 name="body"
                 label="What happened?"
                 multiline
@@ -130,7 +132,7 @@ export default function ReportPage(props) {
           <Button
             variant="contained"
             color="secondary"
-            className={classes.button}
+            className="generate-button"
             startIcon={<SaveIcon />}
             onClick={() => context.generateDocx(props.match.params.id)}
           >
