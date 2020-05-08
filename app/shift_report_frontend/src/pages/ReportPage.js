@@ -8,11 +8,14 @@ import SaveIcon from "@material-ui/icons/Save";
 import SendIcon from "@material-ui/icons/Send";
 import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
+// import MomentUtils from "@date-io/moment";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+//Helpers
+import { formatAMPM } from "../helpers";
 // Components
 import EntryList from "../components/EntryList";
 
@@ -27,6 +30,7 @@ export default function ReportPage(props) {
   const context = useContext(AppContext);
   const history = useHistory();
   const [loading, setLoading] = useState(true);
+  const [entryTime, setEntryTime] = useState(Date.now());
   const [entry, setEntry] = useState({
     body: null,
     time: null,
@@ -50,6 +54,11 @@ export default function ReportPage(props) {
   const handleChange = (event) => {
     setEntry({ ...entry, [event.target.name]: event.target.value });
   };
+  const handleDateChange = (date) => {
+    console.log(formatAMPM(date));
+    setEntry({ ...entry, time: date });
+    console.log(entry);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -61,6 +70,13 @@ export default function ReportPage(props) {
     <div>loading...</div>
   ) : (
     <div>
+      <button
+        onClick={() => {
+          console.log(entry);
+        }}
+      >
+        test
+      </button>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <h2>{context.currentReport.title}</h2>
@@ -75,17 +91,17 @@ export default function ReportPage(props) {
                     id="time-picker"
                     label="Time picker"
                     // value={selectedDate}
-                    onChange={handleChange}
+                    onChange={handleDateChange}
                     KeyboardButtonProps={{
                       "aria-label": "change time",
                     }}
                   />
-                  <input
+                  {/* <input
                     name="time"
                     onChange={handleChange}
                     placeholder="Approximate time"
                     type="text"
-                  />
+                  /> */}
                 </MuiPickersUtilsProvider>
               </Grid>
               <Grid item xs={12}>
