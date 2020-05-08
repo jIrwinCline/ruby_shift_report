@@ -6,17 +6,8 @@ export default function EntryList(props) {
   const context = useContext(AppContext);
   const [loading, setLoading] = useState(true);
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       await context.getEntries(props.reportId);
-  //       console.log(context);
-  //       setLoading(context.currentEntries == undefined ? false : true);
-  //     }
-  //     fetchData();
-  //   }, []);
-
   return (
-    <div>
+    <div className="entry-list">
       {context.currentEntries.map((entry) => {
         return <EntryItem key={entry.id} item={entry} />;
       })}

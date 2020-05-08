@@ -5,3 +5,5 @@ great for useReducer and useContext hook: https://www.youtube.com/watch?v=R_7XRX
 using axios, rails, and react: https://dev.to/harrymlevine/rails-with-react---one-repo---part-3-nk
 
 passing headers with axios: https://stackoverflow.com/questions/51069552/axios-delete-request-with-body-and-headers
+
+nice sidebar headstart: https://dev.to/jsmanifest/create-a-modern-dynamic-sidebar-menu-in-react-using-recursion-36eo

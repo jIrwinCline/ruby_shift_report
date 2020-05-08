@@ -8,6 +8,20 @@ import SaveIcon from "@material-ui/icons/Save";
 import SendIcon from "@material-ui/icons/Send";
 import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
+import TextField from "@material-ui/core/TextField";
+//ElasticUI
+import {
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
+  EuiTitle,
+} from "@elastic/eui";
 // import MomentUtils from "@date-io/moment";
 import {
   MuiPickersUtilsProvider,
@@ -21,7 +35,7 @@ import EntryList from "../components/EntryList";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1),
+    // margin: theme.spacing(1),
   },
 }));
 
@@ -55,13 +69,13 @@ export default function ReportPage(props) {
     setEntry({ ...entry, [event.target.name]: event.target.value });
   };
   const handleDateChange = (date) => {
-    console.log(formatAMPM(date));
-    setEntry({ ...entry, time: date });
-    console.log(entry);
+    setEntryTime(date);
+    setEntry({ ...entry, time: formatAMPM(date) });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     await context.makeEntry({ ...entry, report_id: props.match.params.id });
     context.getEntries(props.match.params.id);
   };
@@ -69,77 +83,65 @@ export default function ReportPage(props) {
   return loading ? (
     <div>loading...</div>
   ) : (
-    <div>
-      <button
-        onClick={() => {
-          console.log(entry);
-        }}
-      >
-        test
-      </button>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <h2>{context.currentReport.title}</h2>
-        </Grid>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <h1 className="report-header">{context.currentReport.title} Details</h1>
+      </Grid>
+      <Grid container>
         <Grid container>
-          <Grid container>
-            <form id="entry-form" onSubmit={handleSubmit}>
-              <Grid item xs={12}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardTimePicker
-                    margin="normal"
-                    id="time-picker"
-                    label="Time picker"
-                    // value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change time",
-                    }}
-                  />
-                  {/* <input
-                    name="time"
-                    onChange={handleChange}
-                    placeholder="Approximate time"
-                    type="text"
-                  /> */}
-                </MuiPickersUtilsProvider>
-              </Grid>
-              <Grid item xs={12}>
-                <textarea
-                  name="body"
-                  onChange={handleChange}
-                  placeholder="Make an entry"
-                  type="text"
+          <form id="entry-form" onSubmit={handleSubmit}>
+            <Grid item xs={12}>
+              <MuiPickersUtilsProvider id="time-picker" utils={DateFnsUtils}>
+                <KeyboardTimePicker
+                  margin="normal"
+                  label="Time picker"
+                  value={entryTime}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    "aria-label": "change time",
+                  }}
                 />
-              </Grid>
-            </form>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              form="entry-form"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              startIcon={<SendIcon />}
-            >
-              Make Entry
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              startIcon={<SaveIcon />}
-              onClick={() => context.generateDocx(props.match.params.id)}
-            >
-              Generate Report
-            </Button>
-          </Grid>
+              </MuiPickersUtilsProvider>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                // fullWidth
+                className="entry-input"
+                name="body"
+                label="What happened?"
+                multiline
+                rows={4}
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </Grid>
+          </form>
         </Grid>
         <Grid item xs={12}>
-          <EntryList reportId={props.match.params.id} />
+          <Button
+            type="submit"
+            form="entry-form"
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            startIcon={<SendIcon />}
+          >
+            Make Entry
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className="generate-button"
+            startIcon={<SaveIcon />}
+            onClick={() => context.generateDocx(props.match.params.id)}
+          >
+            Generate Report
+          </Button>
         </Grid>
       </Grid>
-    </div>
+      <Grid item xs={12}>
+        <EntryList reportId={props.match.params.id} />
+      </Grid>
+    </Grid>
   );
 }
