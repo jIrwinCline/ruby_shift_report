@@ -62,7 +62,7 @@ function App(props) {
   return (
     <GlobalState>
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar className="app-bar" position="static">
           <Toolbar>
             <IconButton
               edge="start"

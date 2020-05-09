@@ -7,9 +7,25 @@
   margin-bottom: 30px !important;
   margin-top: 10px !important;
 }
+#entry-button {
+  left: 10px;
+}
 .generate-button {
   left: 350px;
 }
 #time-picker {
   margin-left: 10px;
+}
+#entry-form {
+  left: 10px;
+  position: relative;
+}
+@media screen and (max-width: 400px) {
+  .entry-input {
+    width: 100%;
+  }
+  .generate-button {
+    top: 10px;
+    left: 10px;
+  }
 }

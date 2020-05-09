@@ -120,6 +120,7 @@ export default function ReportPage(props) {
         <Grid item xs={12}>
           <Button
             type="submit"
+            id="entry-button"
             form="entry-form"
             variant="contained"
             color="primary"
