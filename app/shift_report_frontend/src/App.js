@@ -19,7 +19,7 @@ import Container from "@material-ui/core/Container";
 import GlobalState from "./context/GlobalState";
 
 const items = [
-  { name: "home", label: "Home" },
+  { name: "home", label: "Home", route: "/" },
   { name: "billing", label: "Billing" },
   { name: "settings", label: "Settings" },
 ];
