@@ -24,7 +24,7 @@ export default function Appbar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar className="app-bar" position="static">
+      <AppBar className="app-bar" position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
