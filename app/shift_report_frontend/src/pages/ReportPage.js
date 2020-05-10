@@ -83,66 +83,70 @@ export default function ReportPage(props) {
   return loading ? (
     <div>loading...</div>
   ) : (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <h1 className="report-header">{context.currentReport.title} Details</h1>
-      </Grid>
-      <Grid container>
+    <div className="report-section">
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <h1 className="report-header">
+            {context.currentReport.title} Details
+          </h1>
+        </Grid>
         <Grid container>
-          <form id="entry-form" onSubmit={handleSubmit}>
-            <Grid item xs={12}>
-              <MuiPickersUtilsProvider id="time-picker" utils={DateFnsUtils}>
-                <KeyboardTimePicker
-                  margin="normal"
-                  label="Time picker"
-                  value={entryTime}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change time",
-                  }}
+          <Grid container>
+            <form id="entry-form" onSubmit={handleSubmit}>
+              <Grid item xs={12}>
+                <MuiPickersUtilsProvider id="time-picker" utils={DateFnsUtils}>
+                  <KeyboardTimePicker
+                    margin="normal"
+                    label="Time picker"
+                    value={entryTime}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      "aria-label": "change time",
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  // fullWidth
+                  className="entry-input"
+                  name="body"
+                  label="What happened?"
+                  multiline
+                  rows={4}
+                  onChange={handleChange}
+                  variant="outlined"
                 />
-              </MuiPickersUtilsProvider>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                // fullWidth
-                className="entry-input"
-                name="body"
-                label="What happened?"
-                multiline
-                rows={4}
-                onChange={handleChange}
-                variant="outlined"
-              />
-            </Grid>
-          </form>
+              </Grid>
+            </form>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              id="entry-button"
+              form="entry-form"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              startIcon={<SendIcon />}
+            >
+              Make Entry
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              className="generate-button"
+              startIcon={<SaveIcon />}
+              onClick={() => context.generateDocx(props.match.params.id)}
+            >
+              Generate Report
+            </Button>
+          </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Button
-            type="submit"
-            id="entry-button"
-            form="entry-form"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            startIcon={<SendIcon />}
-          >
-            Make Entry
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            className="generate-button"
-            startIcon={<SaveIcon />}
-            onClick={() => context.generateDocx(props.match.params.id)}
-          >
-            Generate Report
-          </Button>
+          <EntryList reportId={props.match.params.id} />
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <EntryList reportId={props.match.params.id} />
-      </Grid>
-    </Grid>
+    </div>
   );
 }
