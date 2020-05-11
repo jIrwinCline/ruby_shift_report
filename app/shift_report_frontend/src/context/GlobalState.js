@@ -138,8 +138,6 @@ export default function GlobalState(props) {
     })
       .then((res) => {
         history.push(`/report/${res.data.id}`);
-        // const reportId = res.data.id;
-        // history.push(`/report/${reportId}`);
       })
       .catch((err) => {
         console.log(err);
