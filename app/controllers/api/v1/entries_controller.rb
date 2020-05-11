@@ -18,6 +18,7 @@ module Api
 
     # POST /entries
     def create
+      # entry_params[:time].sub!("$tab$", "\t")
       @entry = Entry.new(entry_params)
 
       if @entry.save

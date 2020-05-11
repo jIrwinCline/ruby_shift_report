@@ -5,6 +5,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
 export default function Sidebar({ items }) {
+  const onClick = () => {
+    console.log("clicked");
+  };
   return (
     <div className="sidebar">
       <List disablePadding dense>
