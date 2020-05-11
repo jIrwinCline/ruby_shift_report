@@ -7,14 +7,13 @@ export default function CurrentUserPage(props) {
   const history = useHistory();
 
   useEffect(() => {
-    console.log(context);
     if (!window.localStorage.signedIn) {
       history.push("/login");
     }
   }, []);
 
   return (
-    <React.Fragment>
+    <div className="user-page-container">
       <button onClick={() => context.logout(history)}>Logout</button>
       <div>
         <p>Hello {context.currentUser.email}</p>
@@ -28,6 +27,6 @@ export default function CurrentUserPage(props) {
       >
         Create Report
       </button>
-    </React.Fragment>
+    </div>
   );
 }
