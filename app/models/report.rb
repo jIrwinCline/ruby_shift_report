@@ -10,8 +10,8 @@ class Report < ApplicationRecord
     entries = self.entries
     report = self
     user = User.find(self.user_id)
-    # date = Date.new(report["timestamp"])
-    date = Date.today
+    created_at_str = report["created_at"].to_s
+    date = Date.parse(created_at_str)
 
     doc = Docx::Document.open("template.docx")
     docxEntries = []
@@ -24,12 +24,18 @@ class Report < ApplicationRecord
 
     doc.paragraphs.each do |p|
       p.each_text_run do |tr|
+        p "ITS HEREEE", tr.text
         if tr.text == "SATURDAY"
           tr.text=(date.strftime("%^A"))
         end
-        if tr.text == ", APRIL 12th , 2020"
-         
-          tr.text=(", #{date.strftime("%^B")} #{format_day(date.strftime("%-d"))} , #{date.strftime("%Y")}")
+        if tr.text == ", APRIL 12"
+          tr.text=(", #{date.strftime("%^B")} #{format_day(date.strftime("%-d"))}")
+        end
+        if tr.text == "th ,"
+          tr.text=(" ,")
+        end
+        if tr.text == " 2020"
+          tr.text=(" #{date.strftime("%Y")}")
         end
       end
     end
@@ -53,5 +59,4 @@ class Report < ApplicationRecord
       day.concat('rd') if day[-1] == "3"
     end
   end
-  
 end
