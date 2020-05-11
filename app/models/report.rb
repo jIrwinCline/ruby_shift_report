@@ -35,8 +35,9 @@ class Report < ApplicationRecord
     end
 
     # doc.bookmarks['day'].insert_text_after("SATURDAY")
-    doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}    #{entry.body}" : "" })
-    title = "#{date.strftime("%m")}#{date.strftime("%d")}#{date.strftime("%Y")}.docx"
+    
+    doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}#{entry.body}" : "" })
+    title = "FHC DAY #{date.strftime("%m")}#{date.strftime("%d")}#{date.strftime("%Y")}.docx"
     doc.save(title)
     { report: report, entries: entries, user: user}
   end
