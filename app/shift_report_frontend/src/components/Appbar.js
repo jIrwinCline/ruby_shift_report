@@ -26,14 +26,14 @@ export default function Appbar() {
     <div className={classes.root}>
       <AppBar className="app-bar" position="fixed">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             Shift Report
           </Typography>
