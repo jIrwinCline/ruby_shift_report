@@ -1,10 +1,13 @@
 .drawer-toggle-btn {
   //   float: right;
-  position: absolute;
-  right: -20px;
-  top: 0px;
-  //   height: 65px;
-  //   width: 10px;
+  position: fixed;
+  transform: translateY(40vh);
+  top: 60px;
+  left: -25px;
+  border: none;
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
 }
 
 .MuiDrawer-paper {

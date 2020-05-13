@@ -7,6 +7,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+import ReportIcon from "@material-ui/icons/Assignment";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -17,6 +18,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 //expansion panel
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -75,7 +77,10 @@ export function ResponsiveDrawer(props) {
 
       <Divider />
       <List>
-        {[{ text: "Home", icon: <HomeWorkIcon /> }].map((item, index) => (
+        {[
+          { text: "Home", icon: <HomeWorkIcon /> },
+          { text: "Create New Report", icon: <ReportIcon /> },
+        ].map((item, index) => (
           <ListItem button key={item.text}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
@@ -93,43 +98,7 @@ export function ResponsiveDrawer(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <List>
-            {[
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-              "Report",
-            ].map((text, index) => (
+            {["Report", "Report", "Report", "Report"].map((text, index) => (
               <ListItem button key={text}>
                 {/* <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -167,6 +136,9 @@ export function ResponsiveDrawer(props) {
           >
             {drawerContent}
           </Drawer>
+          <button className="drawer-toggle-btn">
+            <ChevronRightIcon fontSize="large" />
+          </button>
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer
