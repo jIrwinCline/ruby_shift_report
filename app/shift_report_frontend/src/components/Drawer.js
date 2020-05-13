@@ -25,6 +25,8 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+import { useHistory } from "react-router-dom";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -69,6 +71,7 @@ export function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -82,10 +85,10 @@ export function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {[
-          { text: "Home", icon: <HomeWorkIcon /> },
-          { text: "Create New Report", icon: <ReportIcon /> },
+          { text: "Home", icon: <HomeWorkIcon />, route: "/" },
+          { text: "Create New Report", icon: <ReportIcon />, route: "#" },
         ].map((item, index) => (
-          <ListItem button key={item.text}>
+          <ListItem onClick={() => history.push("/")} button key={item.text}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
