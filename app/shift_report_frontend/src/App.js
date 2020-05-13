@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 //Components
 import Appbar from "./components/Appbar";
-import Sidebar from "./components/Sidebar";
+import Drawer from "./components/Drawer";
 //Pages
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -26,8 +26,8 @@ const items = [
 
 function App(props) {
   const SidebarRoutes = (props) => (
-    <div className="body-container">
-      <Sidebar items={items} />
+    <div className="flex">
+      <Drawer />
 
       <div className="content-container">
         <Switch>
