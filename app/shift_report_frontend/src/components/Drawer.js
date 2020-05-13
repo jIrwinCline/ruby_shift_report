@@ -55,6 +55,10 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     marginTop: 65,
   },
+  drawerPaperHidden: {
+    width: drawerWidth,
+    // marginTop: 65,
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -128,7 +132,7 @@ export function ResponsiveDrawer(props) {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.drawerPaperHidden,
             }}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
@@ -136,7 +140,7 @@ export function ResponsiveDrawer(props) {
           >
             {drawerContent}
           </Drawer>
-          <button className="drawer-toggle-btn">
+          <button onClick={handleDrawerToggle} className="drawer-toggle-btn">
             <ChevronRightIcon fontSize="large" />
           </button>
         </Hidden>
