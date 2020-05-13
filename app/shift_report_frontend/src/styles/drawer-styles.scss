@@ -1,0 +1,16 @@
+.drawer-toggle-btn {
+  //   float: right;
+  position: fixed;
+  transform: translateY(40vh);
+  top: 60px;
+  left: -25px;
+  border: none;
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+}
+
+.MuiDrawer-paper {
+  //   overflow: visible !important;
+  border-right: solid 2px rgb(218, 218, 218) !important;
+}
