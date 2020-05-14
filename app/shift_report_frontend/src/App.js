@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -17,12 +18,6 @@ import CurrentUserPage from "./pages/CurrentUserPage";
 //MUI
 import Container from "@material-ui/core/Container";
 import GlobalState from "./context/GlobalState";
-
-const items = [
-  { name: "home", label: "Home", route: "/" },
-  { name: "billing", label: "Billing" },
-  { name: "settings", label: "Settings" },
-];
 
 function App(props) {
   const SidebarRoutes = (props) => (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -25,7 +25,8 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import { useHistory } from "react-router-dom";
+import AppContext from "../context/app-context";
+import { useHistory, useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -70,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
 export function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
+  const context = useContext(AppContext);
   const theme = useTheme();
   const history = useHistory();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -77,7 +79,6 @@ export function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawerContent = (
     <div>
       <div className={classes.toolbar} />
@@ -85,10 +86,26 @@ export function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {[
-          { text: "Home", icon: <HomeWorkIcon />, route: "/" },
-          { text: "Create New Report", icon: <ReportIcon />, route: "#" },
+          {
+            text: "Home",
+            icon: <HomeWorkIcon />,
+            route: "/",
+            btnFunction: () => history.push("/"),
+          },
+          {
+            text: "Create New Report",
+            icon: <ReportIcon />,
+            route: "/report/:id",
+            btnFunction: () =>
+              context.startReport(history, context.currentUser),
+          },
         ].map((item, index) => (
-          <ListItem onClick={() => history.push("/")} button key={item.text}>
+          <ListItem
+            disabled={}
+            onClick={item.btnFunction}
+            button
+            key={item.text}
+          >
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
