@@ -74,15 +74,18 @@ export function ResponsiveDrawer(props) {
   const context = useContext(AppContext);
   const theme = useTheme();
   const history = useHistory();
+  let location = useLocation();
+  let pathname = location.pathname.replace(/\d+$/, ":id");
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  // let re = /\d+$/;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const drawerContent = (
     <div>
       <div className={classes.toolbar} />
-
       <Divider />
       <List>
         {[
@@ -95,13 +98,13 @@ export function ResponsiveDrawer(props) {
           {
             text: "Create New Report",
             icon: <ReportIcon />,
-            route: "/report/:id",
+            route: `/report/:id`,
             btnFunction: () =>
               context.startReport(history, context.currentUser),
           },
         ].map((item, index) => (
           <ListItem
-            disabled={}
+            disabled={pathname == item.route ? true : false}
             onClick={item.btnFunction}
             button
             key={item.text}
@@ -138,7 +141,6 @@ export function ResponsiveDrawer(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
   return (
     <div className={classes.root}>
       <CssBaseline />
