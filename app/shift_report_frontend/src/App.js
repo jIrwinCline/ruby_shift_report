@@ -35,8 +35,8 @@ function App(props) {
 
   return (
     <GlobalState>
-      <Appbar />
       <Router>
+        <Appbar />
         <Switch>
           <Route exact path="/" component={CurrentUserPage} />
           <Route exact path="/login" component={LoginPage} />
