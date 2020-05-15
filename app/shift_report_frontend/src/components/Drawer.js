@@ -84,7 +84,6 @@ export function ResponsiveDrawer(props) {
       setMyReports(await context.getMyReports(context.currentUser.id));
     };
     asyncFunc();
-    // console.log(context.currentUser.id);
   }, []);
 
   const handleDrawerToggle = () => {
@@ -132,14 +131,30 @@ export function ResponsiveDrawer(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <List>
-            {myReports.map((report, index) => (
-              <ListItem button key={report.created_at}>
-                {/* <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon> */}
-                <ListItemText primary={report.created_at} />
-              </ListItem>
-            ))}
+            {myReports
+              .reverse()
+              .slice(0, 10)
+              .map((report, index) => {
+                //very complicated way of formatting the date into a standardized title
+                let date = new Date(report.created_at);
+                date = date
+                  .toLocaleString("en-US")
+                  .split(",")[0]
+                  .split("/")
+                  .map((i) => {
+                    if (i.length == 1) {
+                      i = "0" + i;
+                    }
+                    return i;
+                  })
+                  .join("");
+                const reportTitle = `FHC DAY ${date}`;
+                return (
+                  <ListItem button key={report.created_at}>
+                    <ListItemText primary={reportTitle} />
+                  </ListItem>
+                );
+              })}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
