@@ -81,8 +81,7 @@ export function ResponsiveDrawer(props) {
   // let re = /\d+$/;
   useEffect(() => {
     const asyncFunc = async () => {
-      let res = await context.getMyReports(context.currentUser.id);
-      console.log(res);
+      setMyReports(await context.getMyReports(context.currentUser.id));
     };
     asyncFunc();
     // console.log(context.currentUser.id);
@@ -91,7 +90,6 @@ export function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawerContent = (
     <div>
       <div className={classes.toolbar} />
@@ -152,6 +150,7 @@ export function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
   return (
     <div className={classes.root}>
+      {console.log(myReports)}
       <CssBaseline />
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}

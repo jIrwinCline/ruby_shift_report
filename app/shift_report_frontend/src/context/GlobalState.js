@@ -145,20 +145,10 @@ export default function GlobalState(props) {
   };
 
   const getMyReports = (userId) => {
-    return new Promise((resolve, reject) => {
-      Api()
-        .get(`${API_URL}/api/v1/user/${userId}/reports`)
-        .then((res) => {
-          console.log(res);
-          resolve(res);
-        })
-        .catch((err) => {
-          console.error(err);
-          reject(err);
-        });
-    })
+    return Api()
+      .get(`${API_URL}/api/v1/user/${userId}/reports`)
       .then((res) => {
-        console.log(res);
+        return res.data;
       })
       .catch((err) => {
         console.error(err);
