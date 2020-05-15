@@ -132,33 +132,35 @@ export function ResponsiveDrawer(props) {
         <ExpansionPanelDetails>
           <List>
             {myReports
-              .reverse()
-              .slice(0, 10)
-              .map((report, index) => {
-                //very complicated way of formatting the date into a standardized title
-                let date = new Date(report.created_at);
-                date = date
-                  .toLocaleString("en-US")
-                  .split(",")[0]
-                  .split("/")
-                  .map((i) => {
-                    if (i.length == 1) {
-                      i = "0" + i;
-                    }
-                    return i;
+              ? myReports
+                  .reverse()
+                  .slice(0, 10)
+                  .map((report, index) => {
+                    //very complicated way of formatting the date into a standardized title
+                    let date = new Date(report.created_at);
+                    date = date
+                      .toLocaleString("en-US")
+                      .split(",")[0]
+                      .split("/")
+                      .map((i) => {
+                        if (i.length == 1) {
+                          i = "0" + i;
+                        }
+                        return i;
+                      })
+                      .join("");
+                    const reportTitle = `FHC DAY ${date}`;
+                    return (
+                      <ListItem
+                        button
+                        onClick={() => history.push(`/report/${report.id}`)}
+                        key={report.created_at}
+                      >
+                        <ListItemText primary={reportTitle} />
+                      </ListItem>
+                    );
                   })
-                  .join("");
-                const reportTitle = `FHC DAY ${date}`;
-                return (
-                  <ListItem
-                    button
-                    onClick={() => history.push(`/report/${report.id}`)}
-                    key={report.created_at}
-                  >
-                    <ListItemText primary={reportTitle} />
-                  </ListItem>
-                );
-              })}
+              : null}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
