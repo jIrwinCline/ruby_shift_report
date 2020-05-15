@@ -144,6 +144,17 @@ export default function GlobalState(props) {
       });
   };
 
+  const getMyReports = (userId) => {
+    return Api()
+      .get(`${API_URL}/api/v1/user/${userId}/reports`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const getReport = (reportId) => {
     return new Promise((resolve, reject) => {
       Api()
@@ -241,6 +252,7 @@ export default function GlobalState(props) {
         checkSignedIn: checkSignedIn,
         currentReport: reportState.currentReport,
         startReport: startReport,
+        getMyReports: getMyReports,
         getReport: getReport,
         currentEntries: entryState.currentEntries,
         makeEntry: makeEntry,
