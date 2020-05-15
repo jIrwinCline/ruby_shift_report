@@ -5,9 +5,11 @@ Rails.application.routes.draw do
         post "/generate", to: 'reports#generate'
         resources :entries
       end
+      get "user/:user_id/reports", to: 'reports#current_user_reports'
     end
   end
   root to: "home#index"
+  
 
   post "refresh", controller: :refresh, action: :create
   post "signin", controller: :signin, action: :create

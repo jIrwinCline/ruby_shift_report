@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -25,7 +25,8 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import { useHistory } from "react-router-dom";
+import AppContext from "../context/app-context";
+import { useHistory, useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -70,25 +71,50 @@ const useStyles = makeStyles((theme) => ({
 export function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
+  const context = useContext(AppContext);
   const theme = useTheme();
   const history = useHistory();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  let location = useLocation();
+  let pathname = location.pathname.replace(/\d+$/, ":id");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [myReports, setMyReports] = useState([]);
+  // let re = /\d+$/;
+  useEffect(() => {
+    const asyncFunc = async () => {
+      setMyReports(await context.getMyReports(context.currentUser.id));
+    };
+    asyncFunc();
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawerContent = (
     <div>
       <div className={classes.toolbar} />
-
       <Divider />
       <List>
         {[
-          { text: "Home", icon: <HomeWorkIcon />, route: "/" },
-          { text: "Create New Report", icon: <ReportIcon />, route: "#" },
+          {
+            text: "Home",
+            icon: <HomeWorkIcon />,
+            route: "/",
+            btnFunction: () => history.push("/"),
+          },
+          {
+            text: "Create New Report",
+            icon: <ReportIcon />,
+            route: `/report/:id`,
+            btnFunction: () =>
+              context.startReport(history, context.currentUser),
+          },
         ].map((item, index) => (
-          <ListItem onClick={() => history.push("/")} button key={item.text}>
+          <ListItem
+            disabled={pathname == item.route ? true : false}
+            onClick={item.btnFunction}
+            button
+            key={item.text}
+          >
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
@@ -105,14 +131,34 @@ export function ResponsiveDrawer(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <List>
-            {["Report", "Report", "Report", "Report"].map((text, index) => (
-              <ListItem button key={text}>
-                {/* <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon> */}
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            {myReports
+              .reverse()
+              .slice(0, 10)
+              .map((report, index) => {
+                //very complicated way of formatting the date into a standardized title
+                let date = new Date(report.created_at);
+                date = date
+                  .toLocaleString("en-US")
+                  .split(",")[0]
+                  .split("/")
+                  .map((i) => {
+                    if (i.length == 1) {
+                      i = "0" + i;
+                    }
+                    return i;
+                  })
+                  .join("");
+                const reportTitle = `FHC DAY ${date}`;
+                return (
+                  <ListItem
+                    button
+                    onClick={() => history.push(`/report/${report.id}`)}
+                    key={report.created_at}
+                  >
+                    <ListItemText primary={reportTitle} />
+                  </ListItem>
+                );
+              })}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -121,7 +167,6 @@ export function ResponsiveDrawer(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
   return (
     <div className={classes.root}>
       <CssBaseline />
