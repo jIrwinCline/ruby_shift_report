@@ -76,7 +76,7 @@ export function ResponsiveDrawer(props) {
   const history = useHistory();
   let location = useLocation();
   let pathname = location.pathname.replace(/\d+$/, ":id");
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [myReports, setMyReports] = useState([]);
   // let re = /\d+$/;
   useEffect(() => {
@@ -132,12 +132,12 @@ export function ResponsiveDrawer(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <List>
-            {["report"].map((text, index) => (
-              <ListItem button key={text}>
+            {myReports.map((report, index) => (
+              <ListItem button key={report.created_at}>
                 {/* <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon> */}
-                <ListItemText primary={text} />
+                <ListItemText primary={report.created_at} />
               </ListItem>
             ))}
           </List>
@@ -150,7 +150,6 @@ export function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
   return (
     <div className={classes.root}>
-      {console.log(myReports)}
       <CssBaseline />
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
