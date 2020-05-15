@@ -7,7 +7,14 @@ module Api
     # GET /reports
     def index
       @reports = Report.all
+      
+      render json: @reports
+    end
 
+    # GET /reports/current_user
+    def current_user_reports
+      @reports = Report.where(user_id: params["user_id"])
+      # byebug
       render json: @reports
     end
 
@@ -59,7 +66,7 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def report_params
-        params.require(:report).permit(:body, :title, :user_id)
+        params.permit(:body, :title, :user_id)
       end
     end
   end

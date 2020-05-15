@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -77,7 +77,16 @@ export function ResponsiveDrawer(props) {
   let location = useLocation();
   let pathname = location.pathname.replace(/\d+$/, ":id");
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [myReports, setMyReports] = useState([]);
   // let re = /\d+$/;
+  useEffect(() => {
+    const asyncFunc = async () => {
+      let res = await context.getMyReports(context.currentUser.id);
+      console.log(res);
+    };
+    asyncFunc();
+    // console.log(context.currentUser.id);
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -125,7 +134,7 @@ export function ResponsiveDrawer(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <List>
-            {["Report", "Report", "Report", "Report"].map((text, index) => (
+            {["report"].map((text, index) => (
               <ListItem button key={text}>
                 {/* <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
