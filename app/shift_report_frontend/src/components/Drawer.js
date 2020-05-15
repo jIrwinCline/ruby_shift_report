@@ -150,7 +150,11 @@ export function ResponsiveDrawer(props) {
                   .join("");
                 const reportTitle = `FHC DAY ${date}`;
                 return (
-                  <ListItem button key={report.created_at}>
+                  <ListItem
+                    button
+                    onClick={() => history.push(`/report/${report.id}`)}
+                    key={report.created_at}
+                  >
                     <ListItemText primary={reportTitle} />
                   </ListItem>
                 );
