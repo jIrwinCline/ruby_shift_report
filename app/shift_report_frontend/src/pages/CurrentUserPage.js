@@ -66,7 +66,7 @@ export default function CurrentUserPage(props) {
           <Grid item xs={3}>
             <button
               onClick={() => {
-                context.startReport(history, context.currentUser);
+                context.startReport(context.currentUser);
               }}
             >
               Create Report

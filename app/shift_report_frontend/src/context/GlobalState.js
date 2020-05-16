@@ -38,6 +38,9 @@ export default function GlobalState(props) {
   });
   const checkAuthorized = (err) => {
     if (err.response.status == 401) {
+      delete window.localStorage.csrf;
+      delete window.localStorage.signedIn;
+      delete window.localStorage.currentUser;
       history.push("/login");
       alert("Sorry, for security reasons, you'll need to sign in again");
     }
@@ -76,11 +79,11 @@ export default function GlobalState(props) {
           reject(err);
           delete window.localStorage.csrf;
           delete window.localStorage.signedIn;
-          // delete window.localStorage.currentUser;
+          delete window.localStorage.currentUser;
         });
     });
   };
-  const logout = (history) => {
+  const logout = () => {
     //make api delete call, if status 200, update state with blank current user details
     console.log(axios.defaults);
     Api()
@@ -128,7 +131,7 @@ export default function GlobalState(props) {
   };
 
   //Reports
-  const startReport = (history) => {
+  const startReport = () => {
     //* start a report: send api call, return id, navigate to report page to add entries
     const reportDetails = {
       user_id: window.localStorage.currentUser.id,

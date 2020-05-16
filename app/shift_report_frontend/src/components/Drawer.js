@@ -98,7 +98,7 @@ export function ResponsiveDrawer(props) {
   };
 
   const onIdle = (e) => {
-    context.logout(history);
+    context.logout();
   };
   // let re = /\d+$/;
 
@@ -121,8 +121,7 @@ export function ResponsiveDrawer(props) {
             text: "Create New Report",
             icon: <ReportIcon />,
             route: `/report/:id`,
-            btnFunction: () =>
-              context.startReport(history, context.currentUser),
+            btnFunction: () => context.startReport(context.currentUser),
           },
         ].map((item, index) => (
           <ListItem
