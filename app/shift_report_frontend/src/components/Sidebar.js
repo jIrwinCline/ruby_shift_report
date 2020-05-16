@@ -8,6 +8,7 @@ export default function Sidebar({ items }) {
   const onClick = () => {
     console.log("clicked");
   };
+
   return (
     <div className="sidebar">
       <List disablePadding dense>

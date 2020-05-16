@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import PropTypes from "prop-types";
+
+import IdleTimer from "react-idle-timer";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
@@ -78,13 +79,28 @@ export function ResponsiveDrawer(props) {
   let pathname = location.pathname.replace(/\d+$/, ":id");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [myReports, setMyReports] = useState([]);
-  // let re = /\d+$/;
+  const [idleTimer, setIdleTimer] = useState(null);
+
   useEffect(() => {
     const asyncFunc = async () => {
       setMyReports(await context.getMyReports(context.currentUser.id));
     };
     asyncFunc();
   }, []);
+
+  const onAction = (e) => {
+    console.log("user did something", e);
+  };
+
+  const onActive = (e) => {
+    console.log("user is active", e);
+    console.log("time remaining", idleTimer.getRemainingTime());
+  };
+
+  const onIdle = (e) => {
+    context.logout(history);
+  };
+  // let re = /\d+$/;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -132,33 +148,35 @@ export function ResponsiveDrawer(props) {
         <ExpansionPanelDetails>
           <List>
             {myReports
-              .reverse()
-              .slice(0, 10)
-              .map((report, index) => {
-                //very complicated way of formatting the date into a standardized title
-                let date = new Date(report.created_at);
-                date = date
-                  .toLocaleString("en-US")
-                  .split(",")[0]
-                  .split("/")
-                  .map((i) => {
-                    if (i.length == 1) {
-                      i = "0" + i;
-                    }
-                    return i;
+              ? myReports
+                  .reverse()
+                  .slice(0, 10)
+                  .map((report, index) => {
+                    //very complicated way of formatting the date into a standardized title
+                    let date = new Date(report.created_at);
+                    date = date
+                      .toLocaleString("en-US")
+                      .split(",")[0]
+                      .split("/")
+                      .map((i) => {
+                        if (i.length == 1) {
+                          i = "0" + i;
+                        }
+                        return i;
+                      })
+                      .join("");
+                    const reportTitle = `FHC DAY ${date}`;
+                    return (
+                      <ListItem
+                        button
+                        onClick={() => history.push(`/report/${report.id}`)}
+                        key={report.created_at}
+                      >
+                        <ListItemText primary={reportTitle} />
+                      </ListItem>
+                    );
                   })
-                  .join("");
-                const reportTitle = `FHC DAY ${date}`;
-                return (
-                  <ListItem
-                    button
-                    onClick={() => history.push(`/report/${report.id}`)}
-                    key={report.created_at}
-                  >
-                    <ListItemText primary={reportTitle} />
-                  </ListItem>
-                );
-              })}
+              : null}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -169,6 +187,17 @@ export function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
   return (
     <div className={classes.root}>
+      <IdleTimer
+        ref={(ref) => {
+          setIdleTimer(ref);
+        }}
+        element={document}
+        onActive={onActive}
+        onIdle={onIdle}
+        onAction={onAction}
+        debounce={250}
+        timeout={20 * 60 * 1000}
+      />
       <CssBaseline />
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
