@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 
 import CustomPaper from "../components/CustomPaper/CustomPaper";
 import TitleText from "../components/TitleText/TitleText";
+import BodyText from "../components/BodyText/BodyText";
 import Drawer from "../components/Drawer";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,9 +39,28 @@ export default function CurrentUserPage(props) {
         <Grid container spacing={2}>
           <Grid item xs={9}>
             <CustomPaper>
-              <p>Hello {context.currentUser.email}</p>
-              <p> {context.currentUser.fname}</p>
-              <p> {context.currentUser.dpsst}</p>
+              <TitleText
+                style={{
+                  fontSize: "24px",
+                  marginBottom: -8,
+                  // fontWeight: "bold",
+                }}
+              >
+                User Details
+              </TitleText>
+              <hr style={{ border: "solid 1px grey" }} />
+              <BodyText>
+                <strong>Name: </strong>
+                {context.currentUser.fname} {context.currentUser.lname}
+              </BodyText>
+              <BodyText>
+                <strong>Email: </strong>
+                {context.currentUser.email}
+              </BodyText>
+              <BodyText>
+                <strong>DPSST: </strong>
+                {context.currentUser.dpsst}
+              </BodyText>
             </CustomPaper>
           </Grid>
           <Grid item xs={3}>
