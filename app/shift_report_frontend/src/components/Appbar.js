@@ -10,6 +10,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
 
+import Logo from "../assets/img/logo2.png";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -37,16 +39,8 @@ export default function Appbar() {
     <div className={classes.root}>
       <AppBar className="app-bar" position="fixed">
         <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            Shift Report
+            <img className="app-bar-logo" src={Logo} alt="Shift report logo" />
           </Typography>
           {logoutBtn}
         </Toolbar>
