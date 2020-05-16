@@ -37,7 +37,7 @@ export default function CurrentUserPage(props) {
       <div className={classes.content}>
         <TitleText>Dashboard</TitleText>
         <Grid container spacing={2}>
-          <Grid item xs={9}>
+          <Grid item xs={12} lg={9}>
             <CustomPaper>
               <TitleText
                 style={{
@@ -48,7 +48,7 @@ export default function CurrentUserPage(props) {
               >
                 User Details
               </TitleText>
-              <hr style={{ border: "solid 1px grey" }} />
+              <hr style={{ border: "solid 1px #cecece" }} />
               <BodyText>
                 <strong>Name: </strong>
                 {context.currentUser.fname} {context.currentUser.lname}
@@ -63,7 +63,7 @@ export default function CurrentUserPage(props) {
               </BodyText>
             </CustomPaper>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} lg={3}>
             <button
               onClick={() => {
                 context.startReport(context.currentUser);
