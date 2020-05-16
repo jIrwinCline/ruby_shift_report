@@ -49,18 +49,33 @@ export default function CurrentUserPage(props) {
                 User Details
               </TitleText>
               <hr style={{ border: "solid 1px #cecece" }} />
-              <BodyText>
-                <strong>Name: </strong>
-                {context.currentUser.fname} {context.currentUser.lname}
-              </BodyText>
-              <BodyText>
-                <strong>Email: </strong>
-                {context.currentUser.email}
-              </BodyText>
-              <BodyText>
-                <strong>DPSST: </strong>
-                {context.currentUser.dpsst}
-              </BodyText>
+              <div
+                className="line-container"
+                style={{ backgroundColor: "white" }}
+              >
+                <BodyText>
+                  <strong>Name: </strong>
+                  {context.currentUser.fname} {context.currentUser.lname}
+                </BodyText>
+              </div>
+              <div
+                className="line-container"
+                style={{ backgroundColor: "white" }}
+              >
+                <BodyText>
+                  <strong>Email: </strong>
+                  {context.currentUser.email}
+                </BodyText>
+              </div>
+              <div
+                className="line-container"
+                style={{ backgroundColor: "white" }}
+              >
+                <BodyText>
+                  <strong>DPSST: </strong>
+                  {context.currentUser.dpsst}
+                </BodyText>
+              </div>
             </CustomPaper>
           </Grid>
           <Grid item xs={12} lg={3}>
