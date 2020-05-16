@@ -3,6 +3,7 @@ import AppContext from "../context/app-context";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import TitleText from "../components/TitleText/TitleText";
 
 import Drawer from "../components/Drawer";
 
@@ -31,7 +32,7 @@ export default function CurrentUserPage(props) {
     <div className="user-page-container">
       <Drawer />
       <div className={classes.content}>
-        <button onClick={() => context.logout(history)}>Logout</button>
+        <TitleText>Dashboard</TitleText>
         <div>
           <p>Hello {context.currentUser.email}</p>
           <p> {context.currentUser.fname}</p>
