@@ -98,9 +98,11 @@ export default function GlobalState(props) {
         history.replace("/login");
       })
       .catch((err) => {
+        checkAuthorized(err);
         console.error(err);
       });
   };
+
   const register = (userDetails) => {
     return new Promise((resolve, reject) => {
       Api()
@@ -123,7 +125,7 @@ export default function GlobalState(props) {
         .catch((err) => {
           delete window.localStorage.csrf;
           delete window.localStorage.signedIn;
-          // delete window.localStorage.currentUser;
+          delete window.localStorage.currentUser;
           console.log(err);
           reject(err);
         });
@@ -154,6 +156,7 @@ export default function GlobalState(props) {
       })
       .catch((err) => {
         console.log(err);
+        checkAuthorized(err);
       });
   };
 
