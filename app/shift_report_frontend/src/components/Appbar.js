@@ -27,6 +27,12 @@ export default function Appbar() {
   const context = useContext(AppContext);
   const history = useHistory();
 
+  let logoutBtn = window.localStorage.signedIn ? (
+    <Button onClick={() => context.logout()} color="inherit">
+      Logout
+    </Button>
+  ) : null;
+
   return (
     <div className={classes.root}>
       <AppBar className="app-bar" position="fixed">
@@ -42,9 +48,7 @@ export default function Appbar() {
           <Typography variant="h6" className={classes.title}>
             Shift Report
           </Typography>
-          <Button onClick={() => context.logout(history)} color="inherit">
-            Logout
-          </Button>
+          {logoutBtn}
         </Toolbar>
       </AppBar>
     </div>
