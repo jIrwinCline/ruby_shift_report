@@ -1,4 +1,6 @@
 import React, { useContext, useState, useReducer } from "react";
+import { useHistory } from "react-router-dom";
+
 import Api from "../api/Api";
 import axios from "axios";
 import AppContext from "./app-context";
@@ -14,8 +16,10 @@ import {
 } from "./reducers";
 
 const API_URL = "http://localhost:3000";
+const CLIENT_URL = "https://localhost:3006";
 
 export default function GlobalState(props) {
+  const history = useHistory();
   const context = useContext(AppContext);
   console.log(context.currentReport);
   const [reportState, reportDispatch] = useReducer(
@@ -32,6 +36,12 @@ export default function GlobalState(props) {
   const [reports, setReports] = useState({
     reports: [],
   });
+  const checkAuthorized = (err) => {
+    if (err.response.status == 401) {
+      history.push("/login");
+      alert("Sorry, for security reasons, you'll need to sign in again");
+    }
+  };
   const checkSignedIn = () => {
     if (window.localStorage.signedIn) {
       return true;
@@ -152,6 +162,7 @@ export default function GlobalState(props) {
       })
       .catch((err) => {
         console.error(err);
+        checkAuthorized(err);
       });
   };
 
