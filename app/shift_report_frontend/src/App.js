@@ -35,8 +35,8 @@ function App(props) {
   );
 
   return (
-    <GlobalState>
-      <Router>
+    <Router>
+      <GlobalState>
         <Appbar />
         <Switch>
           <Route exact path="/" component={CurrentUserPage} />
@@ -44,9 +44,8 @@ function App(props) {
           <Route exact path="/register" component={RegisterPage} />
           <Route component={SidebarRoutes} />
         </Switch>
-      </Router>
-      {/* </Container> */}
-    </GlobalState>
+      </GlobalState>
+    </Router>
   );
 }
 
