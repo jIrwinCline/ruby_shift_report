@@ -40,6 +40,13 @@ const getEntries = (entries, state) => {
   };
 };
 
+// const editEntry = (entry, state) => {
+//   return {
+//     ...state,
+//     entry: entry,
+//   };
+// };
+
 export const userReducer = (state, action) => {
   switch (action.type) {
     case SET_CURRENT_USER:
