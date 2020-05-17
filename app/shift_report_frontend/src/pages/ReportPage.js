@@ -64,7 +64,7 @@ function ReportPage(props) {
       setLoading(context.currentReport == undefined ? false : true);
     }
     fetchData();
-  }, []);
+  }, [props.match]);
 
   const handleChange = (event) => {
     setEntry({ ...entry, [event.target.name]: event.target.value });
