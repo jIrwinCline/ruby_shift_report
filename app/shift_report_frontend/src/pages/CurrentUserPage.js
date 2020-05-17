@@ -11,6 +11,8 @@ import BodyText from "../components/BodyText/BodyText";
 import Drawer from "../components/Drawer";
 import CustomLink from "../components/CustomLink/CustomLink";
 
+import InfoCard from "../components/InfoCard/InfoCard";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -39,77 +41,9 @@ export default function CurrentUserPage(props) {
         <TitleText>Dashboard</TitleText>
         <Grid container spacing={2}>
           <Grid item xs={12} lg={9}>
-            <CustomPaper>
-              <Grid container>
-                <Grid item xs={12}>
-                  <TitleText
-                    style={{
-                      fontSize: "24px",
-                      width: "50%",
-                      display: "inline-block",
-                      marginBottom: -8,
-                      // fontWeight: "bold",
-                    }}
-                  >
-                    User Details
-                  </TitleText>
-                </Grid>
-                <Grid item xs={12} md={8}>
-                  <CustomLink
-                    style={{
-                      fontSize: 18,
-                      width: 30,
-                      left: 10,
-                      float: "right",
-                      marginRight: 10,
-                      position: "relative",
-                      bottom: 9,
-                    }}
-                  >
-                    edit
-                  </CustomLink>
-                  <hr style={{ border: "solid 1px #cecece" }} />
-                  <div
-                    className="line-container"
-                    style={{ backgroundColor: "white" }}
-                  >
-                    <BodyText>
-                      <strong>Name: </strong>
-                      {context.currentUser.fname} {context.currentUser.lname}
-                    </BodyText>
-                  </div>
-                  <div
-                    className="line-container"
-                    style={{ backgroundColor: "white" }}
-                  >
-                    <BodyText>
-                      <strong>Email: </strong>
-                      {context.currentUser.email}
-                    </BodyText>
-                  </div>
-                  <div
-                    className="line-container"
-                    style={{ backgroundColor: "white" }}
-                  >
-                    <BodyText>
-                      <strong>DPSST: </strong>
-                      {context.currentUser.dpsst}
-                    </BodyText>
-                  </div>
-                </Grid>
-                <Grid item xs={12} md={4}></Grid>
-              </Grid>
-            </CustomPaper>
+            <InfoCard />
           </Grid>
-          <Grid item xs={12} lg={3}>
-            <button
-              onClick={() => {
-                context.startReport(context.currentUser);
-              }}
-            >
-              Create Report
-            </button>
-          </Grid>
+          <Grid item xs={12} lg={3}></Grid>
         </Grid>
       </div>
     </div>
