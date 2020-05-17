@@ -1,4 +1,5 @@
 export const formatAMPM = (date) => {
+  if (!date) date = Date.now();
   let hours = date.getHours();
   let minutes = date.getMinutes();
   let ampm = hours >= 12 ? "PM" : "AM";
