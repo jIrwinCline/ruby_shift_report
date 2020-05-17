@@ -9,6 +9,7 @@ import CustomPaper from "../components/CustomPaper/CustomPaper";
 import TitleText from "../components/TitleText/TitleText";
 import BodyText from "../components/BodyText/BodyText";
 import Drawer from "../components/Drawer";
+import CustomLink from "../components/CustomLink/CustomLink";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,8 @@ export default function CurrentUserPage(props) {
                   <TitleText
                     style={{
                       fontSize: "24px",
+                      width: "50%",
+                      display: "inline-block",
                       marginBottom: -8,
                       // fontWeight: "bold",
                     }}
@@ -51,7 +54,20 @@ export default function CurrentUserPage(props) {
                     User Details
                   </TitleText>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} md={8}>
+                  <CustomLink
+                    style={{
+                      fontSize: 18,
+                      width: 30,
+                      left: 10,
+                      float: "right",
+                      marginRight: 10,
+                      position: "relative",
+                      bottom: 9,
+                    }}
+                  >
+                    edit
+                  </CustomLink>
                   <hr style={{ border: "solid 1px #cecece" }} />
                   <div
                     className="line-container"
@@ -81,7 +97,7 @@ export default function CurrentUserPage(props) {
                     </BodyText>
                   </div>
                 </Grid>
-                <Grid item xs={4}></Grid>
+                <Grid item xs={12} md={4}></Grid>
               </Grid>
             </CustomPaper>
           </Grid>
