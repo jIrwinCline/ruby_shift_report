@@ -27,7 +27,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import AppContext from "../context/app-context";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, withRouter } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -236,4 +236,4 @@ export function ResponsiveDrawer(props) {
   );
 }
 
-export default ResponsiveDrawer;
+export default withRouter(ResponsiveDrawer);

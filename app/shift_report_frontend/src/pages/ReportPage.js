@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/app-context";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 // MUI
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ReportPage(props) {
+function ReportPage(props) {
   const classes = useStyles();
   const context = useContext(AppContext);
   const history = useHistory();
@@ -157,3 +157,4 @@ export default function ReportPage(props) {
     </div>
   );
 }
+export default withRouter(ReportPage);
