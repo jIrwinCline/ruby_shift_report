@@ -44,7 +44,7 @@ class Report < ApplicationRecord
     
     doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}#{entry.body}" : "" })
     title = "FHC DAY #{date.strftime("%m")}#{date.strftime("%d")}#{date.strftime("%Y")}.docx"
-    doc.save(title)
+    doc.save("/app/report_files/#{title}")
     { report: report, entries: entries, user: user}
   end
 
