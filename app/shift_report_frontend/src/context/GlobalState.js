@@ -316,6 +316,7 @@ export default function GlobalState(props) {
         currentEntries: entryState.currentEntries,
         makeEntry: makeEntry,
         editEntry: editEntry,
+        deleteEntry: deleteEntry,
         getEntries: getEntries,
         generateDocx: generateDocx,
       }}

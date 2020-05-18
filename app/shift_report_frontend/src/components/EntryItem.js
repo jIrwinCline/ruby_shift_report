@@ -13,8 +13,20 @@ function EntryItem(props) {
   const [entryId, setEntryId] = useState(null);
   // let inputEnter = document.getElementById("new-body");
   // inputEnter.onkeyup =
+  const handleBlur = (e) => {
+    const currentTarget = e.currentTarget;
+
+    // Check the newly focused element in the next tick of the event loop
+    setTimeout(() => {
+      // Check if the new activeElement is a child of the original container
+      if (!currentTarget.contains(document.activeElement)) {
+        // You can invoke a callback or add custom logic here
+        setEditMode(!editMode);
+      }
+    }, 0);
+  };
   let editItem = editMode ? (
-    <>
+    <div onBlur={(e) => handleBlur(e)}>
       <div style={{ margin: "4px 0px 0px 8px" }}>{props.item.time}</div>
       <TextField
         onKeyUp={(e) => {
@@ -27,7 +39,6 @@ function EntryItem(props) {
         onChange={(e) => {
           setNewEntry({ ...props.item, body: e.target.value });
         }}
-        onBlur={() => setEditMode(!editMode)}
         id="new-body"
         style={{
           marginTop: 8,
@@ -58,17 +69,15 @@ function EntryItem(props) {
         <IconButton
           aria-label="delete"
           color="primary"
-          // style={{
-          //   position: "relative",
-          //   zIndex: 100,
-          //   marginTop: -50,
-          //   float: "right",
-          // }}
+          onClick={() =>
+            // context.deleteEntry(props.match.params.id, props.item.id)
+            console.log("clicked")
+          }
         >
           <DeleteIcon />
         </IconButton>
       </div>
-    </>
+    </div>
   ) : (
     <div
       onClick={() => {
