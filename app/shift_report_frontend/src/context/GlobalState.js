@@ -217,29 +217,6 @@ export default function GlobalState(props) {
       });
   };
 
-  const editEntry = (entryId, reportId, updatedEntry) => {
-    return new Promise((resolve, reject) => {
-      Api()
-        .put(
-          `${API_URL}/api/v1/reports/${reportId}/entries/${entryId}`,
-          updatedEntry
-        )
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    })
-      .then((res) => {
-        console.log(res);
-        getEntries(reportId);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
   const getEntries = (reportId) => {
     return new Promise((resolve, reject) => {
       Api()
@@ -258,6 +235,48 @@ export default function GlobalState(props) {
       .catch((err) => {
         console.error(err);
       });
+  };
+
+  const editEntry = (entryId, reportId, updatedEntry) => {
+    return new Promise((resolve, reject) => {
+      Api()
+        .put(
+          `${API_URL}/api/v1/reports/${reportId}/entries/${entryId}`,
+          updatedEntry
+        )
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    })
+      .then((res) => {
+        console.log(res);
+        // getEntries(reportId);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const deleteEntry = (reportId, entryId) => {
+    return new Promise((resolve, reject) => {
+      Api()
+        .delete(`${API_URL}/api/v1/reports/${reportId}/entries/${entryId}`)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
   };
 
   const generateDocx = (reportId) => {
