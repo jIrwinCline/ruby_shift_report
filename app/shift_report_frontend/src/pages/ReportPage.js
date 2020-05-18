@@ -61,10 +61,10 @@ function ReportPage(props) {
       }
       await context.getReport(id);
       await context.getEntries(id);
-      setLoading(context.currentReport == undefined ? false : true);
+      setLoading(false);
     }
     fetchData();
-  }, [props.match]);
+  }, []);
 
   const handleChange = (event) => {
     setEntry({ ...entry, [event.target.name]: event.target.value });
