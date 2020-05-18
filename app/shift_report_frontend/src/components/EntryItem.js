@@ -15,12 +15,8 @@ function EntryItem(props) {
   // inputEnter.onkeyup =
   const handleBlur = (e) => {
     const currentTarget = e.currentTarget;
-
-    // Check the newly focused element in the next tick of the event loop
     setTimeout(() => {
-      // Check if the new activeElement is a child of the original container
       if (!currentTarget.contains(document.activeElement)) {
-        // You can invoke a callback or add custom logic here
         setEditMode(!editMode);
       }
     }, 0);
@@ -69,10 +65,10 @@ function EntryItem(props) {
         <IconButton
           aria-label="delete"
           color="primary"
-          onClick={() =>
-            // context.deleteEntry(props.match.params.id, props.item.id)
-            console.log("clicked")
-          }
+          onClick={() => {
+            // debugger;
+            context.deleteEntry(props.match.params.id, props.item.id);
+          }}
         >
           <DeleteIcon />
         </IconButton>

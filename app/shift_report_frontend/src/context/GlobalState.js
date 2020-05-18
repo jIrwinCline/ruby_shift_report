@@ -272,6 +272,7 @@ export default function GlobalState(props) {
         })
         .then((res) => {
           console.log(res);
+          getEntries(reportId);
         })
         .catch((err) => {
           console.error(err);
