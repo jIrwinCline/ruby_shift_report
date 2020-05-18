@@ -19,7 +19,10 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link
+        to={"https://github.com/jIrwinCline/ruby_shift_report"}
+        color="inherit"
+      >
         Shift Report
       </Link>{" "}
       {new Date().getFullYear()}
