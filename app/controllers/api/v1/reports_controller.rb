@@ -52,9 +52,9 @@ module Api
     def generate
 
       # render json: @report.generate_doc({ report: @report, entries: @report.entries.all, user: User.find(@report.user_id)})
-      render json: @report.generate_doc
+      new_docx = @report.generate_doc
       # render json: { report: @report, entries: @report.entries.all, user: User.find(@report.user_id)}
-      # send_file "example.docx"
+      send_file new_docx
     end
 
     private
