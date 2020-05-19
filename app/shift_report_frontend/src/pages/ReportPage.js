@@ -33,6 +33,7 @@ import { formatAMPM } from "../helpers";
 // Components
 import EntryList from "../components/EntryList";
 import Drawer from "../components/Drawer";
+import FileDownload from "../components/FileDownload/FileDownload";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -80,13 +81,14 @@ function ReportPage(props) {
     await context.makeEntry({ ...entry, report_id: props.match.params.id });
     context.getEntries(props.match.params.id);
   };
-
+  let linkRef = React.createRef();
   return loading ? (
     <div>loading...</div>
   ) : (
     <div>
       <div className="report-section">
         <Drawer />
+        <FileDownload />
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <h1 className="report-header">
@@ -143,10 +145,13 @@ function ReportPage(props) {
                 color="secondary"
                 className="generate-button"
                 startIcon={<SaveIcon />}
-                onClick={() => context.generateDocx(props.match.params.id)}
+                onClick={() =>
+                  context.generateDocx(props.match.params.id, linkRef)
+                }
               >
                 Generate Report
               </Button>
+              <a ref={linkRef} />
             </Grid>
           </Grid>
           <Grid item xs={12}>

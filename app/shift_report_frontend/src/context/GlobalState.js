@@ -280,7 +280,7 @@ export default function GlobalState(props) {
     });
   };
 
-  const generateDocx = (reportId) => {
+  const generateDocx = (reportId, linkRef) => {
     //* generate a document with the bolonging entries, save doc to db?, then return the doc as an attachement
     return new Promise((resolve, reject) => {
       console.log(reportId);
@@ -295,7 +295,8 @@ export default function GlobalState(props) {
         });
     })
       .then((res) => {
-        console.log(res);
+        //download doc here
+        console.log("tha res: ", res.data);
       })
       .catch((err) => {
         console.error(err);

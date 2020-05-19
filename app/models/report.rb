@@ -2,6 +2,7 @@ class Report < ApplicationRecord
   belongs_to :user
   has_many :entries, dependent: :destroy
 
+
   # Could put validates
   # validates :body, presence: true
 
@@ -45,7 +46,9 @@ class Report < ApplicationRecord
     doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}#{entry.body}" : "" })
     title = "FHC DAY #{date.strftime("%m")}#{date.strftime("%d")}#{date.strftime("%Y")}.docx"
     doc.save("app/report_files/#{title}")
-    { report: report, entries: entries, user: user, location: "/app/report_files/#{title}"}
+
+    # p "path",path
+    { report: report, entries: entries, user: user, title: title}
   end
 
   private
