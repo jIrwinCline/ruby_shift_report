@@ -88,7 +88,7 @@ function ReportPage(props) {
     <div>
       <div className="report-section">
         <Drawer />
-        <FileDownload />
+        {/* <FileDownload /> */}
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <h1 className="report-header">

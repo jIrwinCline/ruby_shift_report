@@ -1,5 +1,6 @@
 import React, { useContext, useState, useReducer } from "react";
 import { useHistory } from "react-router-dom";
+import FileSaver from "file-saver";
 
 import Api from "../api/Api";
 import axios from "axios";
@@ -296,6 +297,23 @@ export default function GlobalState(props) {
     })
       .then((res) => {
         //download doc here
+        // let link = document.createElement("a");
+        // link.setAttribute("type", "hidden");
+        // link.href = res.data.file.to_path;
+        // // link.download = path;
+        // document.body.appendChild(link);
+        // link.click();
+        // link.remove();
+        //
+        // let path =
+        //   "http://localhost:3000" +
+        //   res.data.file.to_path.split("shift_report")[1];
+        // window.open(path, "_blank");
+        var blob = new Blob([res.data.file], {
+          type: "application/octet-stream;charset=utf-8",
+        });
+        FileSaver.saveAs(blob, "test.docx");
+
         console.log("tha res: ", res.data);
       })
       .catch((err) => {

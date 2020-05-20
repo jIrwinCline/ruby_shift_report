@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function FileDownload() {
+export default function FileDownload(props) {
   useEffect(() => {
     let btn = document.getElementById("submit-button");
     btn.click();
@@ -10,7 +10,11 @@ export default function FileDownload() {
     console.log("submitted!!!");
   };
   return (
-    <form onSubmit={handleSubmit} style={{ display: "hidden" }}>
+    <form
+      onSubmit={handleSubmit}
+      onDownloadComplete={null}
+      style={{ display: "hidden" }}
+    >
       <button id="submit-button"></button>
     </form>
   );
