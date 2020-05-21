@@ -68,7 +68,7 @@ A few of the things you can do with the app:
 
 ## Bugs
 
-Application is still in development. Early stages.
+If the automatic logout alert signals, and you open the app in another broser or tab, the application will be unable to start up
 
 ## Contact
 
