@@ -281,6 +281,14 @@ export default function GlobalState(props) {
     });
   };
 
+  const base64toBlob = (byteString) => {
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ia], { type: "octet/stream" });
+  };
+
   const generateDocx = (reportId, linkRef) => {
     //* generate a document with the bolonging entries, save doc to db?, then return the doc as an attachement
     return new Promise((resolve, reject) => {
@@ -297,22 +305,23 @@ export default function GlobalState(props) {
     })
       .then((res) => {
         //download doc here
+        // let path =
+        //   "http://localhost:3000" +
+        //   res.data.file.to_path.split("shift_report")[1];
         // let link = document.createElement("a");
         // link.setAttribute("type", "hidden");
-        // link.href = res.data.file.to_path;
-        // // link.download = path;
+        // link.href = path;
+        // link.download = path;
         // document.body.appendChild(link);
         // link.click();
         // link.remove();
         //
-        // let path =
-        //   "http://localhost:3000" +
-        //   res.data.file.to_path.split("shift_report")[1];
+        // console.log(path);
         // window.open(path, "_blank");
-        var blob = new Blob([res.data.file], {
-          type: "application/octet-stream;charset=utf-8",
-        });
-        FileSaver.saveAs(blob, "test.docx");
+        // var blob = new Blob([path], {
+        //   type: "application/octet-stream;base64",
+        // });
+        // FileSaver.saveAs(path, "test.docx");
 
         console.log("tha res: ", res.data);
       })
