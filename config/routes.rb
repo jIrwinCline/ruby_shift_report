@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :reports do
-        post "/generate", to: 'reports#generate'
+        get "/generate", to: 'reports#generate'
         resources :entries
       end
       get "user/:user_id/reports", to: 'reports#current_user_reports'
