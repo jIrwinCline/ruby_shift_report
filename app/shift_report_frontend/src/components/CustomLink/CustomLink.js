@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#069",
     cursor: "pointer",
     fontSize: 18,
-    // width: 30,
     position: "relative",
     "&:hover": {
       color: "lightgreen",

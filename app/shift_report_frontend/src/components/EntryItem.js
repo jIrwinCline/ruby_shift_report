@@ -11,8 +11,7 @@ function EntryItem(props) {
   const [editMode, setEditMode] = useState(false);
   const [newEntry, setNewEntry] = useState(null);
   const [entryId, setEntryId] = useState(null);
-  // let inputEnter = document.getElementById("new-body");
-  // inputEnter.onkeyup =
+
   const handleBlur = (e) => {
     const currentTarget = e.currentTarget;
     setTimeout(() => {
@@ -51,8 +50,6 @@ function EntryItem(props) {
       <div
         style={{
           backgroundColor: "white",
-          // border: "solid 1px",
-          // height: 100,
           width: 100,
           position: "relative",
           zIndex: 100,
@@ -66,7 +63,6 @@ function EntryItem(props) {
           aria-label="delete"
           color="primary"
           onClick={() => {
-            // debugger;
             context.deleteEntry(props.match.params.id, props.item.id);
           }}
         >

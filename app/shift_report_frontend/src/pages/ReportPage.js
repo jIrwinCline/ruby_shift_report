@@ -22,7 +22,6 @@ import {
   EuiPageSideBar,
   EuiTitle,
 } from "@elastic/eui";
-// import MomentUtils from "@date-io/moment";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -114,7 +113,6 @@ function ReportPage(props) {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    // fullWidth
                     className="entry-input"
                     name="body"
                     label="What happened?"
