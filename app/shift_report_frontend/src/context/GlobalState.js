@@ -1,5 +1,6 @@
 import React, { useContext, useState, useReducer } from "react";
 import { useHistory } from "react-router-dom";
+import FileSaver from "file-saver";
 
 import Api from "../api/Api";
 import axios from "axios";
@@ -280,26 +281,55 @@ export default function GlobalState(props) {
     });
   };
 
-  const generateDocx = (reportId) => {
+  const base64toBlob = (byteString) => {
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ia], { type: "octet/stream" });
+  };
+
+  const generateDocx = (reportId, linkRef) => {
     //* generate a document with the bolonging entries, save doc to db?, then return the doc as an attachement
-    return new Promise((resolve, reject) => {
-      console.log(reportId);
-      Api()
-        .post(`${API_URL}/api/v1/reports/${reportId}/generate`)
-        .then((res) => {
-          // entryDispatch({ type: SET_ENTRIES, payload: res.data });
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    window.open(`${API_URL}/api/v1/reports/${reportId}/generate`, "_blank");
+    // return new Promise((resolve, reject) => {
+    //   console.log(reportId);
+    //   Api()
+    //     .post(`${API_URL}/api/v1/reports/${reportId}/generate`)
+    //     .then((res) => {
+    //       // entryDispatch({ type: SET_ENTRIES, payload: res.data });
+    //       resolve(res);
+    //     })
+    //     .catch((err) => {
+    //       reject(err);
+    //     });
+    // })
+    //   .then((res) => {
+    //     //download doc here
+    //     // let path =
+    //     //   "http://localhost:3000" +
+    //     //   res.data.file.to_path.split("shift_report")[1];
+    //     // let link = document.createElement("a");
+    //     // link.setAttribute("type", "hidden");
+    //     // link.href = path;
+    //     // link.download = path;
+    //     // document.body.appendChild(link);
+    //     // link.click();
+    //     // link.remove();
+    //     //
+    //     // console.log(path);
+    //     // window.open(path, "_blank");
+    //     var blob = new Blob([res.data], {
+    //       type:
+    //         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    //     });
+    //     FileSaver.saveAs(blob, "test.docx");
+
+    //     console.log("tha res: ", res);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
   };
 
   return (

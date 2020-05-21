@@ -5,7 +5,8 @@
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.serve_static_assets = true
+  # config.public_file_server.enabled = true
   config.cache_classes = true
 
   # Do not eager load code on boot. This avoids loading your whole application

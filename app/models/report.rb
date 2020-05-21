@@ -2,6 +2,7 @@ class Report < ApplicationRecord
   belongs_to :user
   has_many :entries, dependent: :destroy
 
+
   # Could put validates
   # validates :body, presence: true
 
@@ -13,12 +14,12 @@ class Report < ApplicationRecord
     created_at_str = report["created_at"].to_s
     date = Date.parse(created_at_str)
 
-    doc = Docx::Document.open("template.docx")
+    doc = Docx::Document.open("app/assets/template.docx")
     docxEntries = []
 
     # doc.bookmarks['day'].insert_after("SATURDAY")
     entries.each_with_index do |entry, index|
-      docxEntries.push(nil) 
+      docxEntries.push(nil)
       docxEntries.push(entry)
     end
 
@@ -44,8 +45,10 @@ class Report < ApplicationRecord
     
     doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}#{entry.body}" : "" })
     title = "FHC DAY #{date.strftime("%m")}#{date.strftime("%d")}#{date.strftime("%Y")}.docx"
-    doc.save(title)
-    { report: report, entries: entries, user: user}
+    doc.save("app/assets/documents/#{title}")
+
+    # p "path",path
+    { report: report, entries: entries, user: user, title: title}
   end
 
   private
