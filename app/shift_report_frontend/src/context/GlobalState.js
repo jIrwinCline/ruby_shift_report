@@ -22,7 +22,6 @@ const CLIENT_URL = "https://localhost:3006";
 export default function GlobalState(props) {
   const history = useHistory();
   const context = useContext(AppContext);
-  console.log(context.currentReport);
   const [reportState, reportDispatch] = useReducer(
     reportReducer,
     context.currentReport
@@ -62,7 +61,6 @@ export default function GlobalState(props) {
         .post(`${API_URL}/signin`, credentials)
         .then((res) => {
           const { fname, lname, dpsst, email, id } = res.data;
-          console.log(res);
           window.localStorage.csrf = res.data.csrf;
           window.localStorage.signedIn = true;
           window.localStorage.setItem(
@@ -86,7 +84,6 @@ export default function GlobalState(props) {
   };
   const logout = () => {
     //make api delete call, if status 200, update state with blank current user details
-    console.log(axios.defaults);
     Api()
       .delete(`${API_URL}/signin`)
       .then((res) => {
@@ -110,7 +107,6 @@ export default function GlobalState(props) {
         .post(`${API_URL}/signup`, userDetails)
         .then((res) => {
           const { fname, lname, dpsst, email, id } = res.data;
-          console.log(res.data);
           window.localStorage.csrf = res.data.csrf;
           window.localStorage.signedIn = true;
           window.localStorage.setItem(
@@ -127,7 +123,7 @@ export default function GlobalState(props) {
           delete window.localStorage.csrf;
           delete window.localStorage.signedIn;
           delete window.localStorage.currentUser;
-          console.log(err);
+          console.error(err);
           reject(err);
         });
     });
@@ -156,7 +152,7 @@ export default function GlobalState(props) {
         history.push(`/report/${res.data.id}`);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         checkAuthorized(err);
       });
   };
@@ -188,18 +184,15 @@ export default function GlobalState(props) {
     })
       .then((res) => {
         console.log(res);
-        // const reportId = res.data.id;
-        // history.push(`/report/${reportId}`);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
   const makeEntry = (entryDetails) => {
     //* send an entry belonging to a report
     const { body, time, report_id } = entryDetails;
-    console.log(entryDetails);
     return new Promise((resolve, reject) => {
       Api()
         .post(`${API_URL}/api/v1/reports/${report_id}/entries`, entryDetails)
@@ -254,7 +247,6 @@ export default function GlobalState(props) {
     })
       .then((res) => {
         console.log(res);
-        // getEntries(reportId);
       })
       .catch((err) => {
         console.error(err);
@@ -289,47 +281,9 @@ export default function GlobalState(props) {
     return new Blob([ia], { type: "octet/stream" });
   };
 
-  const generateDocx = (reportId, linkRef) => {
+  const generateDocx = (reportId) => {
     //* generate a document with the bolonging entries, save doc to db?, then return the doc as an attachement
     window.open(`${API_URL}/api/v1/reports/${reportId}/generate`, "_blank");
-    // return new Promise((resolve, reject) => {
-    //   console.log(reportId);
-    //   Api()
-    //     .post(`${API_URL}/api/v1/reports/${reportId}/generate`)
-    //     .then((res) => {
-    //       // entryDispatch({ type: SET_ENTRIES, payload: res.data });
-    //       resolve(res);
-    //     })
-    //     .catch((err) => {
-    //       reject(err);
-    //     });
-    // })
-    //   .then((res) => {
-    //     //download doc here
-    //     // let path =
-    //     //   "http://localhost:3000" +
-    //     //   res.data.file.to_path.split("shift_report")[1];
-    //     // let link = document.createElement("a");
-    //     // link.setAttribute("type", "hidden");
-    //     // link.href = path;
-    //     // link.download = path;
-    //     // document.body.appendChild(link);
-    //     // link.click();
-    //     // link.remove();
-    //     //
-    //     // console.log(path);
-    //     // window.open(path, "_blank");
-    //     var blob = new Blob([res.data], {
-    //       type:
-    //         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    //     });
-    //     FileSaver.saveAs(blob, "test.docx");
-
-    //     console.log("tha res: ", res);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
   };
 
   return (

@@ -40,7 +40,6 @@ export default function InfoCard() {
           id="standard-full-width"
           style={{ margin: 8, width: "200px" }}
           defaultValue={`${context.currentUser.fname} ${context.currentUser.lname}`}
-          //   fullWidth
           margin="normal"
         />
       </div>
@@ -52,7 +51,6 @@ export default function InfoCard() {
           id="standard-full-width"
           style={{ margin: 8, width: "200px" }}
           defaultValue={context.currentUser.email}
-          //   fullWidth
           margin="normal"
         />
       </div>
@@ -64,7 +62,6 @@ export default function InfoCard() {
           id="standard-full-width"
           style={{ margin: 8, width: "200px" }}
           defaultValue={context.currentUser.dpsst}
-          // fullWidth
           margin="normal"
         />
       </div>
@@ -104,7 +101,6 @@ export default function InfoCard() {
               width: "50%",
               display: "inline-block",
               marginBottom: -8,
-              // fontWeight: "bold",
             }}
           >
             User Details

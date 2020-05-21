@@ -22,7 +22,6 @@ import {
   EuiPageSideBar,
   EuiTitle,
 } from "@elastic/eui";
-// import MomentUtils from "@date-io/moment";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -33,7 +32,6 @@ import { formatAMPM } from "../helpers";
 // Components
 import EntryList from "../components/EntryList";
 import Drawer from "../components/Drawer";
-import FileDownload from "../components/FileDownload/FileDownload";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -56,7 +54,6 @@ function ReportPage(props) {
   useEffect(() => {
     async function fetchData() {
       const id = props.match.params.id;
-      console.log(props.match.params.id);
       if (!window.localStorage.signedIn) {
         history.push("/login");
       }
@@ -116,7 +113,6 @@ function ReportPage(props) {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    // fullWidth
                     className="entry-input"
                     name="body"
                     label="What happened?"
