@@ -50,13 +50,8 @@ module Api
 
     # POST /reports/1/generate
     def generate
-
-      # render json: @report.generate_doc({ report: @report, entries: @report.entries.all, user: User.find(@report.user_id)})
       new_docx = @report.generate_doc
-      # p new_docx[:path]
-      # render json: { report: @report, entries: @report.entries.all, user: User.find(@report.user_id)}
       send_file(Rails.root.join('app' , 'assets', "documents",  new_docx[:title]), type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-      # render json: { report: @report, file: file }
     end
 
     private

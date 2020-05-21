@@ -17,7 +17,6 @@ class Report < ApplicationRecord
     doc = Docx::Document.open("app/assets/template.docx")
     docxEntries = []
 
-    # doc.bookmarks['day'].insert_after("SATURDAY")
     entries.each_with_index do |entry, index|
       docxEntries.push(nil)
       docxEntries.push(entry)
@@ -40,14 +39,11 @@ class Report < ApplicationRecord
         end
       end
     end
-
-    # doc.bookmarks['day'].insert_text_after("SATURDAY")
     
     doc.bookmarks['start'].insert_multiple_lines(docxEntries.map {|entry| entry ? "#{entry.time}#{entry.body}" : "" })
     title = "FHC DAY #{date.strftime("%m")}#{date.strftime("%d")}#{date.strftime("%Y")}.docx"
     doc.save("app/assets/documents/#{title}")
 
-    # p "path",path
     { report: report, entries: entries, user: user, title: title}
   end
 

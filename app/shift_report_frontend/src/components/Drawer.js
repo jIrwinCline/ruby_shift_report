@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaperHidden: {
     width: drawerWidth,
-    // marginTop: 65,
   },
   content: {
     flexGrow: 1,
@@ -89,18 +88,17 @@ export function ResponsiveDrawer(props) {
   }, []);
 
   const onAction = (e) => {
-    console.log("user did something", e);
+    // console.log("user did something", e);
   };
 
   const onActive = (e) => {
-    console.log("user is active", e);
-    console.log("time remaining", idleTimer.getRemainingTime());
+    // console.log("user is active", e);
+    // console.log("time remaining", idleTimer.getRemainingTime());
   };
 
   const onIdle = (e) => {
     context.logout();
   };
-  // let re = /\d+$/;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
