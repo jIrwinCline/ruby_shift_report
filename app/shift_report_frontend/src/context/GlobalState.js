@@ -16,7 +16,7 @@ import {
   SET_ENTRIES,
 } from "./reducers";
 
-const API_URL = "http://localhost:3000";
+const API_URL = process.env.REACT_APP_API_URL;
 const CLIENT_URL = "https://localhost:3006";
 
 export default function GlobalState(props) {
