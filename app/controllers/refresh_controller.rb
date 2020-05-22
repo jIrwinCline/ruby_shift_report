@@ -6,10 +6,10 @@ class RefreshController < ApplicationController
         tokens = session.refresh_by_access_allowed do
             raise JWTSession::Errors::Unauthorized, "Something's not right here!"
         end
-        response.set_cookie(JWTSessions.access_cookie,
-                            value: tokens[:access]
-                            httponly: true
-                            secure: Rails.env.production?)
+        # response.set_cookie(JWTSessions.access_cookie,
+        #                     value: tokens[:access]
+        #                     httponly: true
+        #                     secure: Rails.env.production?)
 
         render json: { csrf: tokens[:csrf] }
     end
