@@ -82,7 +82,9 @@ export function ResponsiveDrawer(props) {
 
   useEffect(() => {
     const asyncFunc = async () => {
-      setMyReports(await context.getMyReports(context.currentUser.id));
+      if (context.currentUser) {
+        setMyReports(await context.getMyReports(context.currentUser.id));
+      }
     };
     asyncFunc();
   }, []);

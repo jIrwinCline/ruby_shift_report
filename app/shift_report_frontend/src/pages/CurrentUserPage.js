@@ -41,7 +41,7 @@ export default function CurrentUserPage(props) {
         <TitleText>Dashboard</TitleText>
         <Grid container spacing={2}>
           <Grid item xs={12} lg={9}>
-            <InfoCard />
+            {context.currentUser ? <InfoCard /> : null}
           </Grid>
           <Grid item xs={12} lg={3}></Grid>
         </Grid>

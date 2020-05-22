@@ -37,6 +37,7 @@ export default function GlobalState(props) {
     reports: [],
   });
   const checkAuthorized = (err) => {
+    if (err.response == undefined) return;
     if (err.response.status == 401) {
       delete window.localStorage.csrf;
       delete window.localStorage.signedIn;
