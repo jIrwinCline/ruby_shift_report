@@ -1,3 +1,5 @@
 helpful guide: https://www.youtube.com/watch?v=TBZwkWznhZs
 
 dealing with submodule git files" https://www.vogella.com/tutorials/GitSubmodules/article.html
+
+Rails on Elastic Beanstalk and RDS: https://www.honeybadger.io/blog/rails-6-aws-elastic-beanstalk/
