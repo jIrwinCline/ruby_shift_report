@@ -7,8 +7,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://shift-report-frontend.firebaseapp.com/'
-
+    origins 'http://shift-report-frontend.s3-website-us-west-2.amazonaws.com/'
+    
     resource '*',
       headers: :any,
       credentials: true,
