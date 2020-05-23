@@ -25,7 +25,7 @@ module ShiftReport
     config.load_defaults 6.0
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://stage1.dpa1hp3vejn1k.amplifyapp.com/'
+        origins 'https://stage1.dpa1hp3vejn1k.amplifyapp.com'
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
     end
