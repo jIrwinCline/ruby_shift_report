@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://shift-report-frontend.s3-website-us-west-2.amazonaws.com/'
+    origins 'https://master.d3h1krhrfyne7o.amplifyapp.com/'
     
     resource '*',
       headers: :any,
