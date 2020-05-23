@@ -29,7 +29,7 @@ _This a Rails API and React front end built to simply have a user log in with th
 
 ## Hosting
 
-_No hosting yet_
+Shift Report is live! -> [Shift Report](https://stage1.dpa1hp3vejn1k.amplifyapp.com/)
 
 ## Features
 
