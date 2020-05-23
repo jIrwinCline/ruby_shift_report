@@ -25,7 +25,7 @@ module ShiftReport
     config.load_defaults 6.0
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3006'
+        origins 'https://shift-report-frontend.firebaseapp.com/06'
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
     end
