@@ -92,7 +92,7 @@ export default function InfoCard() {
   );
 
   return (
-    <CustomPaper>
+    <CustomPaper style={{ height: "150%" }}>
       <Grid container>
         <Grid item xs={12}>
           <TitleText
