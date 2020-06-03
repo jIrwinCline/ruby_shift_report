@@ -24,5 +24,20 @@
 }
 
 .block-right img.report-graphic {
-  max-width: 175px;
+  max-width: 200px;
+}
+.bottom-options {
+  height: 200px;
+  bottom: 0px;
+  position: relative;
+}
+.options-container {
+  padding: 4%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+.options-container * {
+  // height: 30px !important;
+  font-size: 42px !important;
 }

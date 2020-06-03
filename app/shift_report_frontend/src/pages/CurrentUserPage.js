@@ -17,6 +17,9 @@ import reportImage from "../assets/img/report.jpg";
 import guyImage from "../assets/img/guy.png";
 import guardImage from "../assets/img/guard.png";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
+import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
+import SchoolIcon from "@material-ui/icons/School";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,6 +67,33 @@ export default function CurrentUserPage(props) {
               />
             </div>
           </Grid>
+          {/* <Grid className="bottom-options" item xs={12}>
+            <CustomPaper style={{ height: 200, border: "1px solid grey" }}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <TitleText
+                    style={{
+                      fontSize: "24px",
+                      // width: "60%",
+                      display: "inline-block",
+                      marginBottom: -8,
+                      margin: "-2% 0 0 50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    Data/Account Options
+                  </TitleText>
+                </Grid>
+                <Grid item xs={12}>
+                  <div className="options-container">
+                    <DeleteSweepIcon />
+                    <RemoveCircleIcon />
+                    <SchoolIcon />
+                  </div>
+                </Grid>
+              </Grid>
+            </CustomPaper>
+          </Grid> */}
         </Grid>
       </div>
     </div>
