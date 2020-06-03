@@ -216,9 +216,12 @@ export function ResponsiveDrawer(props) {
           >
             {drawerContent}
           </Drawer>
-          <button onClick={handleDrawerToggle} className="drawer-toggle-btn">
+          {/* <button onClick={handleDrawerToggle} className="drawer-toggle-btn">
             <ChevronRightIcon fontSize="large" />
-          </button>
+          </button> */}
+          <div className="drawer-toggle-btn" onClick={handleDrawerToggle}>
+            <ChevronRightIcon fontSize="large" />
+          </div>
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer

@@ -2,10 +2,11 @@
 @import "./styles/report-page-styles.scss";
 @import "./styles/entry-styles.scss";
 @import "./styles/user-page-styles.scss";
-
+@import "./styles/drawer-styles.scss";
 @import "./components/TitleText/title-text-styles.scss";
 @import "./components/CustomPaper/custom-paper-styles.scss";
 @import "./components/BodyText/body-text-styles.scss";
+@import "./components/InfoCard/info-card-styles.scss";
 
 //fonts
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500&display=swap");
@@ -25,4 +26,13 @@
 .content-container {
   padding: 30px;
   display: flex;
+}
+@media screen and (max-width: 1000px) {
+  .app-bar-logo {
+    position: relative;
+    height: 50px;
+    margin-top: 5px;
+    left: 25%;
+    transform: translateX(-25%);
+  }
 }

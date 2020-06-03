@@ -13,6 +13,14 @@ import CustomLink from "../components/CustomLink/CustomLink";
 
 import InfoCard from "../components/InfoCard/InfoCard";
 
+import reportImage from "../assets/img/report.jpg";
+import guyImage from "../assets/img/guy.png";
+import guardImage from "../assets/img/guard.png";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
+import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
+import SchoolIcon from "@material-ui/icons/School";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -43,7 +51,49 @@ export default function CurrentUserPage(props) {
           <Grid item xs={12} lg={9}>
             {context.currentUser ? <InfoCard /> : null}
           </Grid>
-          <Grid item xs={12} lg={3}></Grid>
+          <Grid item xs={3}>
+            <div className="block-right">
+              <TitleText style={{ fontSize: 20 }}>
+                Perform, Report, and Automate
+              </TitleText>
+              <img src={guardImage} alt="guard graphic" />
+              <ArrowDropDownIcon fontSize="large" />
+              <img src={guyImage} alt="guy graphic" />
+              <ArrowDropDownIcon fontSize="large" />
+              <img
+                className="report-graphic"
+                src={reportImage}
+                alt="report graphic"
+              />
+            </div>
+          </Grid>
+          {/* <Grid className="bottom-options" item xs={12}>
+            <CustomPaper style={{ height: 200, border: "1px solid grey" }}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <TitleText
+                    style={{
+                      fontSize: "24px",
+                      // width: "60%",
+                      display: "inline-block",
+                      marginBottom: -8,
+                      margin: "-2% 0 0 50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    Data/Account Options
+                  </TitleText>
+                </Grid>
+                <Grid item xs={12}>
+                  <div className="options-container">
+                    <DeleteSweepIcon />
+                    <RemoveCircleIcon />
+                    <SchoolIcon />
+                  </div>
+                </Grid>
+              </Grid>
+            </CustomPaper>
+          </Grid> */}
         </Grid>
       </div>
     </div>
