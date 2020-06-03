@@ -50,6 +50,9 @@ export default function CurrentUserPage(props) {
           </Grid>
           <Grid item xs={0} lg={3}>
             <div className="block-right">
+              <TitleText style={{ fontSize: 24 }}>
+                Perform, Report, and Automate
+              </TitleText>
               <img src={guardImage} alt="guard graphic" />
               <ArrowDropDownIcon fontSize="large" />
               <img src={guyImage} alt="guy graphic" />
