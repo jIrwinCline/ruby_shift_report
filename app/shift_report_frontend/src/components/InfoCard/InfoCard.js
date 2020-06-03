@@ -95,7 +95,7 @@ export default function InfoCard() {
 
   return (
     <div>
-      <CustomPaper style={{ height: "125%" }}>
+      <CustomPaper style={{ minHeight: "350px" }}>
         <Grid container>
           <Grid item xs={12}>
             <TitleText
@@ -143,7 +143,7 @@ export default function InfoCard() {
                   height="30"
                   // stroke="#5bb563"
                   fill="#5bb563"
-                  stroke-width="5"
+                  // strokeWidth="5"
                 />
               </svg>
               <TitleText style={{ fontSize: 19 }}>ON YOUR REPORT</TitleText>
@@ -157,7 +157,7 @@ export default function InfoCard() {
         </Grid>
       </CustomPaper>
       <br />
-      <CustomPaper style={{ height: "125%" }}>
+      <CustomPaper style={{ minHeight: "350px" }}>
         <Grid container>
           <Grid item xs={12}>
             <TitleText
@@ -234,7 +234,7 @@ export default function InfoCard() {
                   height="30"
                   // stroke="#5bb563"
                   fill="#5bb563"
-                  stroke-width="5"
+                  // strokeWidth="5"
                 />
               </svg>
               <TitleText style={{ fontSize: 19 }}>THE NUMBERS</TitleText>

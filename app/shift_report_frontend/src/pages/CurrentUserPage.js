@@ -51,9 +51,9 @@ export default function CurrentUserPage(props) {
           <Grid item xs={12} lg={9}>
             {context.currentUser ? <InfoCard /> : null}
           </Grid>
-          <Grid item xs={0} lg={3}>
+          <Grid item xs={3}>
             <div className="block-right">
-              <TitleText style={{ fontSize: 24 }}>
+              <TitleText style={{ fontSize: 20 }}>
                 Perform, Report, and Automate
               </TitleText>
               <img src={guardImage} alt="guard graphic" />
