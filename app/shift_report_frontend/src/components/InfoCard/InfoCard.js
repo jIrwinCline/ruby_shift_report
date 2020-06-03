@@ -13,6 +13,8 @@ import BodyText from "../BodyText/BodyText";
 import Drawer from "../Drawer";
 import CustomLink from "../CustomLink/CustomLink";
 
+import colors from "../../assets/constants/Contants";
+
 const useStyles = makeStyles((theme) => ({
   field: {
     width: 100,
@@ -124,7 +126,33 @@ export default function InfoCard() {
           <hr style={{ border: "solid 1px #cecece", marginBottom: 20 }} />
           {editFields}
         </Grid>
-        <Grid item xs={12} md={4}></Grid>
+        <Grid item xs={12} md={4}>
+          <div className="side-blurb">
+            {/* <BookmarkIcon />{" "} */}
+            <svg
+              width="20"
+              height="30"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="0"
+                y="5"
+                width="8"
+                height="30"
+                // stroke="#5bb563"
+                fill="#5bb563"
+                stroke-width="5"
+              />
+            </svg>
+            <TitleText style={{ fontSize: 19 }}>ON YOUR REPORT</TitleText>
+            <br />
+            <BodyText style={{ lineHeight: 1.75 }}>
+              This is your officer information you've provided us. This is what
+              will appear at the top of each report.
+            </BodyText>
+          </div>
+        </Grid>
       </Grid>
     </CustomPaper>
   );
