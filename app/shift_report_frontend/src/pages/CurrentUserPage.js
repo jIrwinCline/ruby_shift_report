@@ -43,7 +43,9 @@ export default function CurrentUserPage(props) {
           <Grid item xs={12} lg={9}>
             {context.currentUser ? <InfoCard /> : null}
           </Grid>
-          <Grid item xs={12} lg={3}></Grid>
+          <Grid item xs={0} lg={3}>
+            <div className="block-right"></div>
+          </Grid>
         </Grid>
       </div>
     </div>
