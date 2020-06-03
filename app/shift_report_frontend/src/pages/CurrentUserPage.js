@@ -13,6 +13,11 @@ import CustomLink from "../components/CustomLink/CustomLink";
 
 import InfoCard from "../components/InfoCard/InfoCard";
 
+import reportImage from "../assets/img/report.jpg";
+import guyImage from "../assets/img/guy.png";
+import guardImage from "../assets/img/guard.png";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -44,7 +49,17 @@ export default function CurrentUserPage(props) {
             {context.currentUser ? <InfoCard /> : null}
           </Grid>
           <Grid item xs={0} lg={3}>
-            <div className="block-right"></div>
+            <div className="block-right">
+              <img src={guardImage} alt="guard graphic" />
+              <ArrowDropDownIcon fontSize="large" />
+              <img src={guyImage} alt="guy graphic" />
+              <ArrowDropDownIcon fontSize="large" />
+              <img
+                className="report-graphic"
+                src={reportImage}
+                alt="report graphic"
+              />
+            </div>
           </Grid>
         </Grid>
       </div>
