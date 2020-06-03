@@ -1,11 +1,14 @@
 .drawer-toggle-btn {
   position: fixed;
-  transform: translateY(40vh);
-  top: 60px;
-  left: -25px;
-  border: none;
-  width: 70px;
-  height: 70px;
+  z-index: 100;
+  // transform: translateY(40vh);
+  top: 15px;
+  left: 5px;
+  // left: -25px;
+  // border: none;
+  // width: 70px;
+  // height: 70px;
+  color: white;
   border-radius: 100px;
 }
 
