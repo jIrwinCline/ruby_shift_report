@@ -23,9 +23,7 @@ _This a Rails API and React front end built to simply have a user log in with th
 
 **Desktop design focused**
 ![Main Dashboard](./public/shift-report-screenshot2.png)
-<p align="center">
-  <img src = "./public/shift-report-screenshot2.png" width=350>
-</p>
+![Report Writing Page](./public/Shift-report-screenshot.png)
 
 ## Hosting
 
