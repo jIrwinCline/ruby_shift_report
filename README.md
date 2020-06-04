@@ -28,6 +28,8 @@ _This a Rails API and React front end built to simply have a user log in with th
 ## Hosting
 
 Shift Report is live! -> [Shift Report](https://stage1.dpa1hp3vejn1k.amplifyapp.com/)
+Frontend hosted on AWS Amplify
+Backend REST API hosted on Heroku
 
 ## Features
 
