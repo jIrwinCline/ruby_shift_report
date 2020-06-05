@@ -25,6 +25,9 @@ _This a Rails API and React front end built to simply have a user log in with th
 ![Main Dashboard](./public/shift-report-screenshot2.png)
 ![Report Writing Page](./public/Shift-report-screenshot.png)
 ![App Recording](./public/Recording.mp4)
+<video width="320" height="240" controls>
+  <source src="./public/Recording.mp4" type="video/mp4">
+</video>
 
 ## Hosting
 
