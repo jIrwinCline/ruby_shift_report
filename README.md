@@ -1,7 +1,9 @@
 <h1 align="center"> Shift Report Generator </h1> <br>
 
 #### Seemless Report Generation!
-
+<div align="center">
+  ![App Recording](./public/recording.gif)
+</div>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -24,7 +26,6 @@ _This a Rails API and React front end built to simply have a user log in with th
 **Desktop design focused**
 ![Main Dashboard](./public/shift-report-screenshot2.png)
 ![Report Writing Page](./public/Shift-report-screenshot.png)
-![App Recording](./public/recording.gif)
 
 ## Hosting
 
