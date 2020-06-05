@@ -24,6 +24,7 @@ _This a Rails API and React front end built to simply have a user log in with th
 **Desktop design focused**
 ![Main Dashboard](./public/shift-report-screenshot2.png)
 ![Report Writing Page](./public/Shift-report-screenshot.png)
+![App Recording](./public/Recording.mp4)
 
 ## Hosting
 
