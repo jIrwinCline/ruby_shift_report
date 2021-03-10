@@ -83,7 +83,7 @@ Tech owner:
 
 - jcpdx.dev@gmail.com
 
-Frontend contributers: 
+Additional Frontend contributers: 
 
 - sdarianne@gmail.com
 
