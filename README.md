@@ -76,9 +76,13 @@ If the automatic logout alert signals, and you open the app in another broser or
 
 If you'd like to inquire about any details, or have questions about the technology, feel free to contact me.
 
-Email:
+Tech owner:
 
-- jci@pdx.edu
+- jcpdx.dev@gmail.com
+
+Frontend contributers: 
+
+- sdarianne@gmail.com
 
 ### License
 
