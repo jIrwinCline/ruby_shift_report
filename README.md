@@ -22,6 +22,8 @@
 
 ## Introduction
 _Since the rails backend is not supported any more, this repo exists as a reference to building other Rails JWT Sessions apps_
+
+
 _This is a Rails API and React front end built to simply have a user log in with their security officer information, add entries on the events that occurred during their shift, and generate a docx file with those entries included. Great for security companies wanting to automate the report formatting process!_
 
 **Desktop design focused**
