@@ -1,3 +1,4 @@
+<h1 align="center"> [DISCONTINUED] </h1> <br>
 <h1 align="center"> Shift Report Generator </h1> <br>
 
 #### Seemless Report Generation!
